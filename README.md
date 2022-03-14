@@ -26,6 +26,11 @@ This is the content for project 2 (full stack-Node app)
 - no api key is needed on this resource (https://drag-race-api.readme.io/docs)
 - env file
 
+**STETCH GOALS**
+- add local queens
+- add a refine by to the queen display
+- query of most added queen to showcase
+
 **UNSOLVED PROBLEMS**
 - queen info is from 4 years ago, so there is a lot of missing seasons
 
