@@ -1,6 +1,6 @@
 // Import Dependencies
 const express = require('express')
-const Example = require('../models/example')
+const Example = require('../models/team')
 
 // Create router
 const router = express.Router()
@@ -23,7 +23,7 @@ router.use((req, res, next) => {
 
 // index ALL
 router.get('/', (req, res) => {
-	Example.find({})
+	Team.find({})
 		.then(examples => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 router.get('/mine', (req, res) => {
 	// destructure user info from req.session
 	const { username, userId, loggedIn } = req.session
-	Example.find({ owner: userId })
+	Team.find({ owner: userId })
 		.then(examples => {
 			res.render('examples/index', { examples, username, loggedIn })
 		})

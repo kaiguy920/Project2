@@ -24,6 +24,7 @@ middleware(app)
 
 app.use('/auth', UserRouter)
 app.use('/examples', ExampleRouter)
+app.use(express.static("images"))
 
 app.get('/dragball', async (req, res) => {
 	let queenData;
