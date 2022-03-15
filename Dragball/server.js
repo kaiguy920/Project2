@@ -43,11 +43,30 @@ app.get('/dragball', async (req, res) => {
 app.get('/dragball/:id', async (req, res) => {
 	const id = req.params.id
 	let queenData;
+	let miniWin = 0
 	await axios
 		.get(`http://www.nokeynoshade.party/api/queens/${id}`)
 		.then(res => {
 			queenData = res.data;
-			console.log("===============================QUEEN DATA======================", queenData)
+			lipsync = res.data.lipsyncs
+			challenges = res.data.challenges
+
+			queenData.howMany = lipsync.length;
+			queenData.lipsyncWins = lipsync.won
+
+			if (queenData.challenges.type = "mini" && queenData.challenges.won) {
+				miniWin += 1
+			}
+
+			queenData.miniWins = miniWin
+
+			// console.log("********mini wins********", miniWin);
+
+			console.log(queenData.challenges[0].type)
+
+			// queenData.battingAverage = ''
+			// console.log("===============================QUEEN DATA======================", queenData)
+
 		})
 		.catch(error => {
 			res.redirect('/error')

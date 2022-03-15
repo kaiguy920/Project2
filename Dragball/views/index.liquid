@@ -9,7 +9,7 @@
             <div class="queenContainer">
             {% for queenData in queenData %}
             <div>
-               <h3 class="aboutQueen"> <a id="queenName" href="/dragball/{{ queenData.id}}"> <strong>{{queenData.name}}</strong></a> </h3>
+               <h3 class="aboutQueen"> <strong>{{queenData.name}}</strong> </h3>
                 </br>    
                 {% if queenData.winner %}
                 <img src="{{queenData.image_url}}" alt="wut" height="450" width="300" style="border: 5px solid rgb(255, 196, 0)">
@@ -19,6 +19,7 @@
                 <p class="aboutQueen">{{queenData.quote}}</p>
             </br>
             
+                <a href="/dragball/{{ queenData.id}}" class="btn btn-dark">View Stats</a>
             <!-- add to top 5 button -->
              <!-- <form method="POST" action="/pokemon/{{ forloop.index0}}?_method=DELETE">
                 <input type="submit" value="DELETE">

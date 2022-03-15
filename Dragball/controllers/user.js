@@ -21,7 +21,7 @@ router.get('/signup', (req, res) => {
 // POST to send the signup info
 router.post('/signup', async (req, res) => {
 	// set the password to hashed password
-  req.body.password = await bcrypt.hash(
+	req.body.password = await bcrypt.hash(
 		req.body.password,
 		await bcrypt.genSalt(10)
 	)
@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
 	// console.log('request object', req)
 	// get the data from the request body
 	console.log('req.body', req.body);
-	
+
 	const { username, password } = req.body
 	// then we search for the user
 	User.findOne({ username: username })
@@ -61,7 +61,12 @@ router.post('/login', async (req, res) => {
 				if (result) {
 					console.log('the user', user);
 
-          			const { username, loggedIn, userId } = req.session
+					// store some properties in the session
+					req.session.username = user.username
+					req.session.loggedIn = true
+					req.session.userId = user.id
+
+					const { username, loggedIn, userId } = req.session
 
 					console.log('session user id', req.session.userId)
 					// redirect to /examples if login is successful
@@ -78,7 +83,7 @@ router.post('/login', async (req, res) => {
 		// catch any other errors that occur
 		.catch((error) => {
 			console.log('the error', error);
-			
+
 			res.redirect(`/error?error=${error}`)
 		})
 })

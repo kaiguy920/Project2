@@ -2,6 +2,7 @@
 {% block content %}
 <div class="container-md">
     <article>
+    
         <h1>
             {{ queenData.name }} -
         </h1>
@@ -11,7 +12,7 @@
     <ul>
         <li>Season</li>
         <h4>{{queenData.episodes[0].seasonId}}</h4>
-        <li>Have they even won?</li>
+        <li>Are they a winner, baby?</li>
           <h4>  {% if queenData.winner %}
            YAS
            {% else %}
@@ -24,29 +25,29 @@
            {% else %}
           No, she's throws the shade
            {% endif %} </h4>
-
            <li>Lip Sync Stats</li>
            <h4>Batting average: {{}}</h4>
-           <h5>How Many: {{queenData.lipsyncs[0]}}</h5>
-           <h5>Wins: </h5>
-
-           <li>Challenge Wins</li>
-           <h5>Mini's: {{}}</h5>
-           <h5>Maxi's: </h5>
-
+           <h5>How Many: {{queenData.howMany}}</h5>
+           <h5>Wins: {{queenData.wins}} </h5>
         </ul>
         
+        <li>Challenge Wins</li>
+       
+        <h5>Mini's: </h5>
+        <h5>Maxi's: </h5>
+
+
         <h6>Body: {{ example.body }}</h6>
         {% if example.owner == userId %}
 
         <div class="btn-group">
 
-            <a href="/examples/{{ example.id }}/edit" class="btn btn-primary">Edit</a>
-            <form action="/examples/{{ example.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
+            <form action="/team/mine" method="POST">
+                <input type="submit" value="add" class="btn btn-dark">
             </form>
         </div>
         {% endif %}
+     
     </article>
 </div>
 {% endblock %}
