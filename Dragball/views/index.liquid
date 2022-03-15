@@ -1,7 +1,32 @@
 {% layout "layout.liquid" %}
 {% block content %}
 
-    <h1>Welcome!</h1>
+    <h1>Fantasy Dragball League</h1>
+    <img src="./images/football.jpeg" alt="for what?">
+    
+    <div class="container">
+        <h1>RoyalTea</h1> 
+            <div class="queenContainer">
+            {% for queenData in queenData %}
+            <div>
+               <h3 class="aboutQueen"> <a id="queenName" href="/dragball/{{ queenData.id}}"> <strong>{{queenData.name}}</strong></a> </h3>
+                </br>    
+                {% if queenData.winner %}
+                <img src="{{queenData.image_url}}" alt="wut" height="450" width="300" style="border: 5px solid rgb(255, 196, 0)">
+                {% else %}
+                <img src="{{queenData.image_url}}" alt="wut" height="450" width="300"></a>
+                {% endif %}
+                <p class="aboutQueen">{{queenData.quote}}</p>
+            </br>
+            
+            <!-- add to top 5 button -->
+             <!-- <form method="POST" action="/pokemon/{{ forloop.index0}}?_method=DELETE">
+                <input type="submit" value="DELETE">
+            </form>    -->
+         </div>
+        {% endfor %}
+        </div>
+    </div> 
 
 
 {% endblock %}

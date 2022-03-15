@@ -25,9 +25,35 @@ middleware(app)
 app.use('/auth', UserRouter)
 app.use('/examples', ExampleRouter)
 
-app.get('/', (req, res) => {
+app.get('/dragball', async (req, res) => {
+	let queenData;
+	await axios
+		.get(`http://www.nokeynoshade.party/api/queens/all`)
+		.then(res => {
+			queenData = res.data;
+			// console.log("===============================QUEEN DATA======================", queenData)
+		})
+		.catch(error => {
+			res.redirect('/error')
+		})
 	const { username, userId, loggedIn } = req.session
-	res.render('index.liquid', { loggedIn, username, userId })
+	res.render('index.liquid', { loggedIn, username, userId, queenData })
+})
+
+app.get('/dragball/:id', async (req, res) => {
+	const id = req.params.id
+	let queenData;
+	await axios
+		.get(`http://www.nokeynoshade.party/api/queens/${id}`)
+		.then(res => {
+			queenData = res.data;
+			console.log("===============================QUEEN DATA======================", queenData)
+		})
+		.catch(error => {
+			res.redirect('/error')
+		})
+	const { username, userId, loggedIn } = req.session
+	res.render('Queens/show.liquid', { loggedIn, username, userId, queenData })
 })
 
 app.get('/error', (req, res) => {

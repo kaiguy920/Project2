@@ -1,0 +1,11 @@
+.queenContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}   
+
+.aboutQueen {
+    width: 250px;
+    white-space: normal;
+    word-break: break-word;
+}

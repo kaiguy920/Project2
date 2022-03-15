@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 		.then(examples => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			
+
 			res.render('examples/index', { examples, username, loggedIn })
 		})
 		.catch(error => {
@@ -37,8 +37,8 @@ router.get('/', (req, res) => {
 
 // index that shows only the user's examples
 router.get('/mine', (req, res) => {
-    // destructure user info from req.session
-    const { username, userId, loggedIn } = req.session
+	// destructure user info from req.session
+	const { username, userId, loggedIn } = req.session
 	Example.find({ owner: userId })
 		.then(examples => {
 			res.render('examples/index', { examples, username, loggedIn })
@@ -96,18 +96,36 @@ router.put('/:id', (req, res) => {
 		})
 })
 
-// show route
-router.get('/:id', (req, res) => {
-	const exampleId = req.params.id
-	Example.findById(exampleId)
-		.then(example => {
-            const {username, loggedIn, userId} = req.session
-			res.render('examples/show', { example, username, loggedIn, userId })
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
+// // show route from API
+// router.get('/:id', async (req, res) => {
+// 	const id = req.params.id
+// 	let queenData;
+// 	await axios
+// 		.get(`http://www.nokeynoshade.party/api/queens/${id}`)
+// 		.then(res => {
+// 			queenData = res.data;
+// 			console.log("===============================QUEEN DATA======================", queenData)
+// 		})
+// 		.catch(error => {
+// 			res.redirect('/error')
+// 		})
+// 	const { username, userId, loggedIn } = req.session
+// 	res.render('Queens/show.liquid', { loggedIn, username, userId, queenData })
+// })
+
+
+// // show route from database
+// router.get('/:id', (req, res) => {
+// 	const exampleId = req.params.id
+// 	Example.findById(exampleId)
+// 		.then(example => {
+//             const {username, loggedIn, userId} = req.session
+// 			res.render('examples/show', { example, username, loggedIn, userId })
+// 		})
+// 		.catch((error) => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 
 // delete route
 router.delete('/:id', (req, res) => {
