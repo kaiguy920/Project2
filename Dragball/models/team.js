@@ -10,26 +10,12 @@ const { Schema, model } = mongoose
 const teamSchema = new Schema(
 	{
 		// teamName: { type: String, required: true },
-		teamMember1: {
+		// set ref to an array & set limit to 5
+		teamMember: [{
 			type: Schema.Types.ObjectID,
 			ref: 'Queen',
-		},
-		teamMember2: {
-			type: Schema.Types.ObjectID,
-			ref: 'Queen',
-		},
-		teamMember3: {
-			type: Schema.Types.ObjectID,
-			ref: 'Queen',
-		},
-		teamMember4: {
-			type: Schema.Types.ObjectID,
-			ref: 'Queen',
-		},
-		teamMember5: {
-			type: Schema.Types.ObjectID,
-			ref: 'Queen',
-		},
+			maxTeamMember: 5
+		}],
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',

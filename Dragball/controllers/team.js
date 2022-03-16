@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Team = require('../models/team')
+const Queen = require('../models/queen')
 
 // Create router
 const router = express.Router()
@@ -20,89 +21,92 @@ router.use((req, res, next) => {
 	}
 })
 
-// Routes
+// =====================================================================
+//                              ROUTES
+// =====================================================================
+// create -> POST route that actually calls the db and makes a new document of a team member to render to team
+// router.post('/team/:queenId', (req, res) => {
+// 	// destructure user info from req.session
+// 	// push id of queen into the team member array
+// Team.teamMember.push
+// 	// Team.save()
+// 	// find team by id that corresponds to user
+// 	console.log("*********body odyyy*************", req.params.queenId);
+// 	req.body.owner = req.session.userId
+// 	// Team.create(req.body)
+// 	// 	.then((team) => {
+// 	// 		console.log('this was returned from adding to team\n', team)
+// 	// 		// res.redirect(`/dragball`)
+// 	// 	})
+// 	// .catch(error => {
+// 	// 	res.redirect(`/error?error=${error}`)
+// 	// })
+// })
 
-// index ALL
-router.get('/', (req, res) => {
+// JSON route to get direct look at all the objects in Team
+router.get("/json", (req, res) => {
 	Team.find({})
 		.then(team => {
-			const username = req.session.username
-			const loggedIn = req.session.loggedIn
-
-			res.render('team/index', { team, username, loggedIn })
+			res.render('Queens/team')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
 
-// index to populate queen data to local database
-router.get('/fave', (req, res) => {
+//  SHOW route to display the teams selected as favorites
+router.get('/team/mine', (req, res) => {
+	const { username, userId, loggedIn } = req.session
+	Team.find({ owner: userId })
+		.then(team => {
+			// console.log("she's a super team\n", team)
+			res.render('Queens/team', { team, username, loggedIn })
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+
+})
+
+router.post('/:queenId', (req, res) => {
 	// destructure user info from req.session
-	const { username, userId, loggedIn } = req.session
-	Queen.find({ owner: userId })
-		.then(queen => {
-			res.render('Queens/fave', { queen, username, loggedIn })
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
-
-// new route -> GET route that renders our page with the form
-router.get('/new', (req, res) => {
-	const { username, userId, loggedIn } = req.session
-	res.render('team/new', { username, loggedIn })
-})
-
-// create -> POST route that actually calls the db and makes a new document
-router.post('/', (req, res) => {
-	req.body.ready = req.body.ready === 'on' ? true : false
-
+	// push id of queen into the team member array
+	// Team.push(queenId)
+	// Team.save()
+	// find team by id that corresponds to user
+	console.log("*********req.params.queenId*************", req.params.queenId);
 	req.body.owner = req.session.userId
-	Example.create(req.body)
-		.then(example => {
-			console.log('this was returned from create', example)
-			res.redirect('/team')
+	// Team.create(req.body)
+	// 	.then((team) => {
+	// 		console.log('this was returned from adding to team\n', team)
+	// 		// res.redirect(`/dragball`)
+	// 	})
+	// .catch(error => {
+	// 	res.redirect(`/error?error=${error}`)
+	// })
+})
+
+
+// DELETE route
+router.delete('/team/mine/:id', (req, res) => {
+	// get the team id
+	const teamId = req.params.id
+	console.log("req.params.id", req.params.id);
+	// delete the team
+	Team.findByIdAndRemove(teamId)
+		.then((team) => {
+			console.log('this is the response from FBID', team)
+			res.redirect('/fave/mine')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
-
-// edit route -> GET that takes us to the edit form view
-router.get('/:id/edit', (req, res) => {
-	// we need to get the id
-	const exampleId = req.params.id
-	Example.findById(exampleId)
-		.then(example => {
-			res.render('team/edit', { example })
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
-
-// update route
-router.put('/:id', (req, res) => {
-	const exampleId = req.params.id
-	req.body.ready = req.body.ready === 'on' ? true : false
-
-	Example.findByIdAndUpdate(exampleId, req.body, { new: true })
-		.then(example => {
-			res.redirect(`/team/${example.id}`)
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
-
-
 
 // delete route
 router.delete('/:id', (req, res) => {
-	const queenId = req.params.id
-	Queen.findByIdAndRemove(queenId)
+	const teamId = req.params.id
+	team.findByIdAndRemove(queenId)
 		.then(example => {
 			res.redirect('/team')
 		})

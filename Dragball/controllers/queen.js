@@ -23,8 +23,10 @@ router.use((req, res, next) => {
 
 
 
-// Routes
-// index to populate queen data to local database
+// =====================================================================
+//                              ROUTES
+// =====================================================================
+// Icreate -> POST route that actually calls the db and makes a new document of Queen to render to the fave's
 router.post('/fave', (req, res) => {
     // destructure user info from req.session
     // console.log("*********body odyyy*************", req.body);
@@ -42,83 +44,44 @@ router.post('/fave', (req, res) => {
 // JSON route to get direct look at all the objects in Queen
 router.get("/json", (req, res) => {
     Queen.find({})
+        // Queen.deleteMany({ name: "Victoria 'Porkchop' Parker" })
         .then(queen => {
             res.send({ queen })
         })
-        .catch(error => res.json(error))
+        .catch(error => {
+            res.redirect(`/error?error=${error}`)
+        })
 })
 
-
+//  SHOW route to display the queens selected as favorites
 router.get('/fave/mine', (req, res) => {
-    Queen.find({})
+    const { username, userId, loggedIn } = req.session
+    Queen.find({ owner: userId })
         .then(queen => {
-            console.log("she's a super queen\n", queen)
-            res.render('Queens/fave', { queen })
+            // console.log("she's a super queen\n", queen)
+            res.render('Queens/fave', { queen, username, loggedIn })
         })
-        .catch(error => res.json(error))
+        .catch(error => {
+            res.redirect(`/error?error=${error}`)
+        })
 
-    // we need to get the id
-    // const queenId = req.param.id
-    // console.log("*********body odyyy2*************", req.body);
-    // // find the queen
-    // Queen.findById(queenId)
-    //     // -->render if there is a fruit
-    //     .then((queen) => {
-    //         console.log('da queen\n', queen)
-    //         const username = req.session.username
-    //         const loggedIn = req.session.loggedIn
-    //         res.render('Queens/fave', { queen, username, loggedIn })
-    //     })
-
-    //     .catch(error => {
-    //         res.redirect(`/error?error=${error}`)
-    //     })
 })
 
-
-// update route -> sends a put request to our database
-router.put('/fave/mine', (req, res) => {
-    // get the id
+// DELETE route
+router.delete('/fave/mine/:id', (req, res) => {
+    // get the queen id
     const queenId = req.params.id
-    // tell mongoose to update the queen
-    Queen.findByIdAndUpdate(queenId, req.body, { new: true })
-        // if successful -> redirect to the main page
+    console.log("req.params.id", req.params.id);
+    // delete the queen
+    Queen.findByIdAndRemove(queenId)
         .then((queen) => {
-            console.log('the updated queen', queen)
-
-            res.redirect(`/queen/fave/mine`)
+            console.log('this is the response from FBID', queen)
+            res.redirect('/queen/fave/mine')
         })
-        // if an error, display that
-        .catch((error) => res.json(error))
+        .catch(error => {
+            res.redirect(`/error?error=${error}`)
+        })
 })
-
-
-
-
-// const { username, userId, loggedIn } = req.session
-// Queen.find({ owner: userId })
-// Queen.find({})
-//     .then(queen => {
-//         // can only do redirect on post routes
-//         console.log("queen", queen);
-//         res.redirect('dragball/2', { queen, username, loggedIn })
-//     })
-//     .catch(error => {
-//         res.redirect(`/error?error=${error}`)
-//     })
-
-// Queen.create(req.body)
-// .then((queen) => {
-//     console.log('this was returned from create', queen)
-//     res.render('Queens/fave')
-// })
-// .catch((err) => {
-//     console.log(err)
-//     res.json({ err })
-// })
-
-
-// 
 
 // Export the Router
 module.exports = router

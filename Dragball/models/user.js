@@ -12,7 +12,8 @@ const UserSchema = new Schema(
 		password: { 
 			type: String, 
 			required: true 
-		}
+		},
+		// { team name }
 	},
 	{ timestamps: true }
 )

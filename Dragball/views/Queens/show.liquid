@@ -39,15 +39,13 @@
         
         <div class="btn-group">
             <form action="/queen/fave" method="POST">
-           <!-- 3 inputs for id, name & image with type hidden -->
+           <!-- 3 inputs for id, name & image with type hidden to push info into the object model -->
            <input type="hidden" value="{{queenData.id}}" name="queenId">
            <input type="hidden" value="{{queenData.name}}" name="name">
            <input type="hidden" value="{{queenData.image_url}}" name="image">
             <input type="submit" value="She's a Fave" class="btn btn-dark">
             </form>
         </div>
-        {% if example.owner == userId %}
-        {% endif %}
         
     </article>
 </div>

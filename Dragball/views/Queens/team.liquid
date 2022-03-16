@@ -2,19 +2,16 @@
 {% block content %}
 <div class="container-md">
     
-        
-      
-     
         <h1>Oh, so you think you can make HerStory, huh?</h1>
         <h2 class="display-6">My Team</h2>
         <div class="row">
-            {% for queen in queens %}
+            {% for queen in team %}
                 <div class="card" style="width: 18rem;">
                     <!-- card header -> name of fruit -->
                     <!-- card body -> ready to eat as title, color as text-->
                     <h5 class="card-header">{{queen.name}}</h5>
                     <div class="card-body">
-                        <img src="{{queen.image_url}}">
+                        <img src="{{queen.image}}">
                         <p class="card-text"> 
                            
                         </p>
