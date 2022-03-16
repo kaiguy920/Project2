@@ -1,6 +1,7 @@
 // Import Dependencies
 const express = require('express')
-const Example = require('../models/team')
+const mongoose = require('mongoose')
+const Team = require('../models/team')
 
 // Create router
 const router = express.Router()
@@ -24,11 +25,11 @@ router.use((req, res, next) => {
 // index ALL
 router.get('/', (req, res) => {
 	Team.find({})
-		.then(examples => {
+		.then(team => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
 
-			res.render('examples/index', { examples, username, loggedIn })
+			res.render('team/index', { team, username, loggedIn })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -36,12 +37,12 @@ router.get('/', (req, res) => {
 })
 
 // index that shows only the user's examples
-router.get('/mine', (req, res) => {
+router.get('/fave', (req, res) => {
 	// destructure user info from req.session
 	const { username, userId, loggedIn } = req.session
 	Team.find({ owner: userId })
-		.then(examples => {
-			res.render('examples/index', { examples, username, loggedIn })
+		.then(team => {
+			res.render('Queens/index', { team, username, loggedIn })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -51,7 +52,7 @@ router.get('/mine', (req, res) => {
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.render('examples/new', { username, loggedIn })
+	res.render('team/new', { username, loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
@@ -62,7 +63,7 @@ router.post('/', (req, res) => {
 	Example.create(req.body)
 		.then(example => {
 			console.log('this was returned from create', example)
-			res.redirect('/examples')
+			res.redirect('/team')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -75,7 +76,7 @@ router.get('/:id/edit', (req, res) => {
 	const exampleId = req.params.id
 	Example.findById(exampleId)
 		.then(example => {
-			res.render('examples/edit', { example })
+			res.render('team/edit', { example })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -89,7 +90,7 @@ router.put('/:id', (req, res) => {
 
 	Example.findByIdAndUpdate(exampleId, req.body, { new: true })
 		.then(example => {
-			res.redirect(`/examples/${example.id}`)
+			res.redirect(`/team/${example.id}`)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -120,7 +121,7 @@ router.put('/:id', (req, res) => {
 // 	Example.findById(exampleId)
 // 		.then(example => {
 //             const {username, loggedIn, userId} = req.session
-// 			res.render('examples/show', { example, username, loggedIn, userId })
+// 			res.render('team/show', { example, username, loggedIn, userId })
 // 		})
 // 		.catch((error) => {
 // 			res.redirect(`/error?error=${error}`)
@@ -132,7 +133,7 @@ router.delete('/:id', (req, res) => {
 	const exampleId = req.params.id
 	Example.findByIdAndRemove(exampleId)
 		.then(example => {
-			res.redirect('/examples')
+			res.redirect('/team')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

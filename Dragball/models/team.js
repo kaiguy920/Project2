@@ -9,10 +9,27 @@ const { Schema, model } = mongoose
 
 const teamSchema = new Schema(
 	{
-		name: { type: String, required: true },
-		teamMembers: { type: String, required: true },
-		amount: { type: Number, required: true },
-		ready: { type: Boolean, required: true },
+		teamName: { type: String, required: true },
+		teamMember1: {
+			type: Schema.Types.ObjectID,
+			ref: 'Queen',
+		},
+		teamMember2: {
+			type: Schema.Types.ObjectID,
+			ref: 'Queen',
+		},
+		teamMember3: {
+			type: Schema.Types.ObjectID,
+			ref: 'Queen',
+		},
+		teamMember4: {
+			type: Schema.Types.ObjectID,
+			ref: 'Queen',
+		},
+		teamMember5: {
+			type: Schema.Types.ObjectID,
+			ref: 'Queen',
+		},
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
@@ -26,4 +43,4 @@ const Team = model('Team', teamSchema)
 /////////////////////////////////
 // Export our Model
 /////////////////////////////////
-module.exports = team
+module.exports = Team

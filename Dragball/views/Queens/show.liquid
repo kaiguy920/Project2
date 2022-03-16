@@ -4,7 +4,7 @@
     <article>
     
         <h1>
-            {{ queenData.name }} -
+            {{ queenData.name }} 
         </h1>
         <img src="{{queenData.image_url}}" height="450" width="300" alt="">
 
@@ -20,34 +20,31 @@
            {% endif %} </h4>
 
            <li>Miss Congeneality?</li>
-          <h4>  {% if queenData.missCongeneality %}
+          <h4>  {% if queenData.missCongeniality %}
            Mhm, she's a queen, for the queens
            {% else %}
           No, she's throws the shade
            {% endif %} </h4>
            <li>Lip Sync Stats</li>
-           <h4>Batting average: {{}}</h4>
+           <h4>Batting average: {{ queenData.lipsyncWin | divided_by: queenData.howMany }}</h4>
            <h5>How Many: {{queenData.howMany}}</h5>
-           <h5>Wins: {{queenData.wins}} </h5>
+           <h5>Wins: {{queenData.lipsyncWin}} </h5>
         </ul>
         
         <li>Challenge Wins</li>
        
-        <h5>Mini's: </h5>
-        <h5>Maxi's: </h5>
+        <h5>Mini's: {{ queenData.miniWins }}</h5>
+        <h5>Maxi's: {{ queenData.maxiWins }}</h5>
 
-
-        <h6>Body: {{ example.body }}</h6>
-        {% if example.owner == userId %}
-
+        
         <div class="btn-group">
-
-            <form action="/team/mine" method="POST">
-                <input type="submit" value="add" class="btn btn-dark">
+            <form action="/team/fave" method="POST">
+                <input type="submit" value="She's a Fave" class="btn btn-dark">
             </form>
         </div>
+        {% if example.owner == userId %}
         {% endif %}
-     
+        
     </article>
 </div>
 {% endblock %}
