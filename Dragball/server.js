@@ -58,7 +58,7 @@ app.get('/dragball/:id', async (req, res) => {
 			queenData.howMany = lipsync.length;
 			// =================================================
 			queenData.lipsyncs.map(lipsync => {
-				console.log("lipsync", lipsync);
+				// console.log("lipsync", lipsync);
 				if (lipsync.won) {
 					lipsyncWin += 1
 				}
@@ -81,11 +81,7 @@ app.get('/dragball/:id', async (req, res) => {
 			})
 
 			queenData.maxiWins = maxiWin
-			// console.log("********mini wins********", miniWin);
 
-			// console.log("miniWin", miniWin)
-
-			// queenData.battingAverage = ''
 			// console.log("===============================QUEEN DATA======================", queenData)
 
 		})

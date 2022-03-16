@@ -36,13 +36,13 @@ router.get('/', (req, res) => {
 		})
 })
 
-// index that shows only the user's examples
+// index to populate queen data to local database
 router.get('/fave', (req, res) => {
 	// destructure user info from req.session
 	const { username, userId, loggedIn } = req.session
-	Team.find({ owner: userId })
-		.then(team => {
-			res.render('Queens/index', { team, username, loggedIn })
+	Queen.find({ owner: userId })
+		.then(queen => {
+			res.render('Queens/fave', { queen, username, loggedIn })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -97,36 +97,7 @@ router.put('/:id', (req, res) => {
 		})
 })
 
-// // show route from API
-// router.get('/:id', async (req, res) => {
-// 	const id = req.params.id
-// 	let queenData;
-// 	await axios
-// 		.get(`http://www.nokeynoshade.party/api/queens/${id}`)
-// 		.then(res => {
-// 			queenData = res.data;
-// 			console.log("===============================QUEEN DATA======================", queenData)
-// 		})
-// 		.catch(error => {
-// 			res.redirect('/error')
-// 		})
-// 	const { username, userId, loggedIn } = req.session
-// 	res.render('Queens/show.liquid', { loggedIn, username, userId, queenData })
-// })
 
-
-// // show route from database
-// router.get('/:id', (req, res) => {
-// 	const exampleId = req.params.id
-// 	Example.findById(exampleId)
-// 		.then(example => {
-//             const {username, loggedIn, userId} = req.session
-// 			res.render('team/show', { example, username, loggedIn, userId })
-// 		})
-// 		.catch((error) => {
-// 			res.redirect(`/error?error=${error}`)
-// 		})
-// })
 
 // delete route
 router.delete('/:id', (req, res) => {
