@@ -9,7 +9,7 @@ const { Schema, model } = mongoose
 
 const teamSchema = new Schema(
 	{
-		teamName: { type: String, required: true },
+		// teamName: { type: String, required: true },
 		teamMember1: {
 			type: Schema.Types.ObjectID,
 			ref: 'Queen',

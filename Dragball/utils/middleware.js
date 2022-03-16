@@ -2,6 +2,7 @@
 // Dependencies
 /////////////////////////////////
 require('dotenv').config()
+const serveStatic = require('serve-static')
 const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
@@ -16,6 +17,7 @@ const middleware = (app) => {
 	app.use(methodOverride('_method'))
 	app.use(express.urlencoded({ extended: false }))
 	app.use(express.static('public'))
+	app.use(serveStatic('public'))
 	app.use(
 		session({
 			secret: process.env.SECRET,

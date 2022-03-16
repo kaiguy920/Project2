@@ -22,40 +22,76 @@ router.use((req, res, next) => {
 })
 
 
-router.get('/fave', (req, res) => {
-    // we need to get the id
-    const queenId = req.body.id
-    console.log("*********body odyyy2*************", req.params.id);
-    // find the queen
-    Queen.findById(queenId)
-        // -->render if there is a fruit
-        .then((queen) => {
-            console.log('da queen\n', queen)
-            const username = req.session.username
-            const loggedIn = req.session.loggedIn
-            res.render('Queens/fave', { queen, username, loggedIn })
-        })
-
-        .catch(error => {
-            res.redirect(`/error?error=${error}`)
-        })
-})
 
 // Routes
 // index to populate queen data to local database
 router.post('/fave', (req, res) => {
     // destructure user info from req.session
-    console.log("*********body odyyy*************", req.body);
+    // console.log("*********body odyyy*************", req.body);
     req.body.owner = req.session.userId
     Queen.create(req.body)
         .then((queen) => {
-            // console.log('this was returned from adding to fave\n', queen)
-            res.redirect(`dragball/${queenId}`)
+            console.log('this was returned from adding to fave\n', queen)
+            res.redirect(`/dragball`)
         })
         .catch(error => {
             res.redirect(`/error?error=${error}`)
         })
 })
+
+// JSON route to get direct look at all the objects in Queen
+router.get("/json", (req, res) => {
+    Queen.find({})
+        .then(queen => {
+            res.send({ queen })
+        })
+        .catch(error => res.json(error))
+})
+
+
+router.get('/fave/mine', (req, res) => {
+    Queen.find({})
+        .then(queen => {
+            console.log("she's a super queen\n", queen)
+            res.render('Queens/fave', { queen })
+        })
+        .catch(error => res.json(error))
+
+    // we need to get the id
+    // const queenId = req.param.id
+    // console.log("*********body odyyy2*************", req.body);
+    // // find the queen
+    // Queen.findById(queenId)
+    //     // -->render if there is a fruit
+    //     .then((queen) => {
+    //         console.log('da queen\n', queen)
+    //         const username = req.session.username
+    //         const loggedIn = req.session.loggedIn
+    //         res.render('Queens/fave', { queen, username, loggedIn })
+    //     })
+
+    //     .catch(error => {
+    //         res.redirect(`/error?error=${error}`)
+    //     })
+})
+
+
+// update route -> sends a put request to our database
+router.put('/fave/mine', (req, res) => {
+    // get the id
+    const queenId = req.params.id
+    // tell mongoose to update the queen
+    Queen.findByIdAndUpdate(queenId, req.body, { new: true })
+        // if successful -> redirect to the main page
+        .then((queen) => {
+            console.log('the updated queen', queen)
+
+            res.redirect(`/queen/fave/mine`)
+        })
+        // if an error, display that
+        .catch((error) => res.json(error))
+})
+
 
 
 

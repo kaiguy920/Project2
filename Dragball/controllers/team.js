@@ -101,8 +101,8 @@ router.put('/:id', (req, res) => {
 
 // delete route
 router.delete('/:id', (req, res) => {
-	const exampleId = req.params.id
-	Example.findByIdAndRemove(exampleId)
+	const queenId = req.params.id
+	Queen.findByIdAndRemove(queenId)
 		.then(example => {
 			res.redirect('/team')
 		})
