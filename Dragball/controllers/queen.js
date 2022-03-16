@@ -27,47 +27,24 @@ router.post('/fave', (req, res) => {
     // destructure user info from req.session
     const { username, userId, loggedIn } = req.session
     Queen.find({ owner: userId })
+    Queen.find({})
         .then(queen => {
+            console.log("queen", queen);
             res.render('Queens/fave', { queen, username, loggedIn })
         })
         .catch(error => {
             res.redirect(`/error?error=${error}`)
         })
-})
 
-// new route -> GET route that renders our page with the form
-router.get('/new', (req, res) => {
-    const { username, userId, loggedIn } = req.session
-    res.render('team/new', { username, loggedIn })
-})
-
-// create -> POST route that actually calls the db and makes a new document
-router.post('/', (req, res) => {
-    req.body.ready = req.body.ready === 'on' ? true : false
-
-    req.body.owner = req.session.userId
-    Example.create(req.body)
-        .then(example => {
-            console.log('this was returned from create', example)
-            res.redirect('/team')
-        })
-        .catch(error => {
-            res.redirect(`/error?error=${error}`)
-        })
-})
-
-
-
-// delete route
-router.delete('/:id', (req, res) => {
-    const exampleId = req.params.id
-    Example.findByIdAndRemove(exampleId)
-        .then(example => {
-            res.redirect('/team')
-        })
-        .catch(error => {
-            res.redirect(`/error?error=${error}`)
-        })
+    // Queen.create(req.body)
+    // .then((queen) => {
+    //     console.log('this was returned from create', queen)
+    //     res.render('Queens/fave')
+    // })
+    // .catch((err) => {
+    //     console.log(err)
+    //     res.json({ err })
+    // })
 })
 
 // Export the Router
