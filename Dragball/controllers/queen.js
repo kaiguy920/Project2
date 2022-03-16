@@ -21,31 +21,68 @@ router.use((req, res, next) => {
     }
 })
 
+
+router.get('/fave', (req, res) => {
+    // we need to get the id
+    const queenId = req.body.id
+    console.log("*********body odyyy2*************", req.params.id);
+    // find the queen
+    Queen.findById(queenId)
+        // -->render if there is a fruit
+        .then((queen) => {
+            console.log('da queen\n', queen)
+            const username = req.session.username
+            const loggedIn = req.session.loggedIn
+            res.render('Queens/fave', { queen, username, loggedIn })
+        })
+
+        .catch(error => {
+            res.redirect(`/error?error=${error}`)
+        })
+})
+
 // Routes
 // index to populate queen data to local database
 router.post('/fave', (req, res) => {
     // destructure user info from req.session
-    const { username, userId, loggedIn } = req.session
-    Queen.find({ owner: userId })
-    Queen.find({})
-        .then(queen => {
-            console.log("queen", queen);
-            res.render('Queens/fave', { queen, username, loggedIn })
+    console.log("*********body odyyy*************", req.body);
+    req.body.owner = req.session.userId
+    Queen.create(req.body)
+        .then((queen) => {
+            // console.log('this was returned from adding to fave\n', queen)
+            res.redirect(`dragball/${queenId}`)
         })
         .catch(error => {
             res.redirect(`/error?error=${error}`)
         })
-
-    // Queen.create(req.body)
-    // .then((queen) => {
-    //     console.log('this was returned from create', queen)
-    //     res.render('Queens/fave')
-    // })
-    // .catch((err) => {
-    //     console.log(err)
-    //     res.json({ err })
-    // })
 })
+
+
+
+// const { username, userId, loggedIn } = req.session
+// Queen.find({ owner: userId })
+// Queen.find({})
+//     .then(queen => {
+//         // can only do redirect on post routes
+//         console.log("queen", queen);
+//         res.redirect('dragball/2', { queen, username, loggedIn })
+//     })
+//     .catch(error => {
+//         res.redirect(`/error?error=${error}`)
+//     })
+
+// Queen.create(req.body)
+// .then((queen) => {
+//     console.log('this was returned from create', queen)
+//     res.render('Queens/fave')
+// })
+// .catch((err) => {
+//     console.log(err)
+//     res.json({ err })
+// })
+
+
+// 
 
 // Export the Router
 module.exports = router
