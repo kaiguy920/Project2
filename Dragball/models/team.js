@@ -11,11 +11,13 @@ const teamSchema = new Schema(
 	{
 		// teamName: { type: String, required: true },
 		// set ref to an array & set limit to 5
-		teamMember: [{
-			type: Schema.Types.ObjectID,
-			ref: 'Queen',
-			maxTeamMember: 5
-		}],
+		teamMembers: {
+			type: [{
+				type: Schema.Types.ObjectID,
+				ref: 'Queen',
+			}],
+			validate: [arrayLimit, '{PATH} exceeds the limit of 5']
+		},
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
@@ -23,6 +25,10 @@ const teamSchema = new Schema(
 	},
 	{ timestamps: true }
 )
+
+function arrayLimit(val) {
+	return val.length <= 5;
+}
 
 const Team = model('Team', teamSchema)
 
