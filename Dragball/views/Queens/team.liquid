@@ -7,12 +7,12 @@
     <form action="/team/mine/name" method="POST">
         <div class="form-group">
             <label for="teamName">Team Name</label>
-            <input type="text" class="form-control" id="teamName" placeholder="ex: Slaytina">
+            <input type="text" class="form-control" name="teamName" placeholder="ex: Slaytina">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="teamName" class="btn btn-primary">Submit</button>
     </form>
 
-    <h1>{{ teamName.name }}</h1>
+    <h1>{{ teamMembers.name }}</h1>
 
     <h2 class="display-6">
         Top 5
@@ -20,6 +20,7 @@
 
     <div class="row">
         {% for queen in team %}
+        <p>***{{ queen.name }}</p>
         <div class="card" style="width: 18rem;">
             <h5 class="card-header">{{ queen._id }}</h5>
             <div class="card-body">

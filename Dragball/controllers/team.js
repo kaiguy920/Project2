@@ -54,7 +54,7 @@ router.post('/:queenId', async (req, res) => {
 	console.log("+++++++++req.body+++++++++++++++++\n", req.body)
 
 	await Team.find({ owner: userId })
-		.populate(Team.teamMembers)
+		.populate("teamMembers.Queen")
 		.then((team) => {
 			// this is making an array of arrays
 			// console.log('TEAMMMMMMMMMMMMMM', team);
@@ -81,6 +81,7 @@ router.post('/:queenId', async (req, res) => {
 router.get('/mine', (req, res) => {
 	const { username, userId, loggedIn } = req.session
 	Team.find({ owner: userId })
+		.populate("teamMembers", "id name")
 		.then(team => {
 			console.log("here::: ", team)
 			// console.log("she's a super team\n", team)
