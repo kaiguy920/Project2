@@ -113,24 +113,13 @@ router.delete('/mine/:id', (req, res) => {
 	Team.findByIdAndRemove(teamId)
 		.then((team) => {
 			console.log('this is the response from FBID', team)
-			res.redirect('/fave/mine')
+			res.redirect('/team/mine')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
 
-// delete route
-router.delete('/:id', (req, res) => {
-	const teamId = req.params.id
-	team.findByIdAndRemove(queenId)
-		.then(example => {
-			res.redirect('/team')
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
 
 // Export the Router
 module.exports = router
