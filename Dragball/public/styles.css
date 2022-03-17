@@ -14,3 +14,8 @@
 .form-group {
     border-bottom: 20px;
 }
+
+img:hover {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }

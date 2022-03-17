@@ -50,13 +50,14 @@ router.post('/:queenId', async (req, res) => {
 	const queenId = req.params.queenId
 
 	req.body.owner = req.session.userId
-	console.log("*********req.params.queenId*************", queenId);
+	// console.log("*********req.params.queenId*************", queenId);
+	console.log("+++++++++req.body+++++++++++++++++\n", req.body)
 
 	await Team.find({ owner: userId })
 		.populate(Team.teamMembers)
 		.then((team) => {
 			// this is making an array of arrays
-			console.log('TEAMMMMMMMMMMMMMM', team);
+			// console.log('TEAMMMMMMMMMMMMMM', team);
 			team.push(queenId)
 			teamList = team
 
@@ -67,7 +68,7 @@ router.post('/:queenId', async (req, res) => {
 
 	Team.create(req.body)
 		.then((team) => {
-			console.log('this was returned from adding to team\n', team)
+			// console.log('this was returned from adding to team\n', team)
 			res.redirect(`/dragball`)
 		})
 		.catch(error => {
@@ -99,7 +100,7 @@ router.delete('/mine/:id', (req, res) => {
 	// delete the team
 	Team.findByIdAndRemove(teamId)
 		.then((team) => {
-			console.log('this is the response from FBID', team)
+			// console.log('this is the response from FBID', team)
 			res.redirect('/team/mine')
 		})
 		.catch(error => {
