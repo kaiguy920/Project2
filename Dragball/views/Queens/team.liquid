@@ -1,40 +1,51 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-md">
-    
-        <h1>Oh, so you think you can make HerStory, huh?</h1>
-        <h2 class="display-6">My Team</h2>
 
+    <h1>Oh, so you think you can make HerStory, huh?</h1>
 
-
-        <div class="row">
-            {% for queen in team %}
-                <div class="card" style="width: 18rem;">
-                    <h5 class="card-header">{{ queen.id }}</h5>
-                    <div class="card-body">
-                        <img src="{{queen.image}}">
-                        <p class="card-text"> 
-                           
-                        </p>
-                        {% if example.owner == userId %}
-                        <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
-                            <input type="submit" value="Sashay Away" class="btn btn-danger">
-                        </form>
-                         <div class="form-group">
-                            <label for="queenRank">Order</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
+    <form action="/team/mine/name" method="POST">
+        <div class="form-group">
+            <label for="teamName">Team Name</label>
+            <input type="text" class="form-control" id="teamName" placeholder="ex: Slaytina">
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <h1>{{ teamName.name }}</h1>
+
+    <h2 class="display-6">
+        Top 5
+    </h2>
+
+    <div class="row">
+        {% for queen in team %}
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-header">{{ queen.name }}</h5>
+            <div class="card-body">
+                <img src="{{queen.image}}">
+                <p class="card-text">
+
+                </p>
+                {% if example.owner == userId %}
+                <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
+                    <input type="submit" value="Sashay Away" class="btn btn-danger">
+                </form>
+                <div class="form-group">
+                    <label for="queenRank">Order</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

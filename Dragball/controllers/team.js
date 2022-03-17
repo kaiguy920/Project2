@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Team = require('../models/team')
 const Queen = require('../models/queen')
+const TeamName = require('../models/teamName')
 
 // Create router
 const router = express.Router()
@@ -24,24 +25,6 @@ router.use((req, res, next) => {
 // =====================================================================
 //                              ROUTES
 // =====================================================================
-// create -> POST route that actually calls the db and makes a new document of a team member to render to team
-// router.post('/team/:queenId', (req, res) => {
-// 	// destructure user info from req.session
-// 	// push id of queen into the team member array
-// Team.teamMember.push
-// 	// Team.save()
-// 	// find team by id that corresponds to user
-// 	console.log("*********body odyyy*************", req.params.queenId);
-// 	req.body.owner = req.session.userId
-// 	// Team.create(req.body)
-// 	// 	.then((team) => {
-// 	// 		console.log('this was returned from adding to team\n', team)
-// 	// 		// res.redirect(`/dragball`)
-// 	// 	})
-// 	// .catch(error => {
-// 	// 	res.redirect(`/error?error=${error}`)
-// 	// })
-// })
 
 // JSON route to get direct look at all the objects in Team
 router.get("/json", (req, res) => {
@@ -61,15 +44,19 @@ router.post('/:queenId', async (req, res) => {
 	// push id of queen into the team member array
 	// Team.push(queenId)
 	// Team.save()
+	// set team to a variable?
 	let teamList;
 	const { username, userId, loggedIn } = req.session
 	const queenId = req.params.queenId
+
 	req.body.owner = req.session.userId
 	console.log("*********req.params.queenId*************", queenId);
 
 	await Team.find({ owner: userId })
 		.populate(Team.teamMembers)
 		.then((team) => {
+			// this is making an array of arrays
+			console.log('TEAMMMMMMMMMMMMMM', team);
 			team.push(queenId)
 			teamList = team
 
@@ -120,6 +107,24 @@ router.delete('/mine/:id', (req, res) => {
 		})
 })
 
+router.post('/mine/name', (req, res) => {
+	TeamName.create(req.body)
+		.then((teamName) => {
+			console.log('this was returned from adding to teamname\n', teamName)
+			res.redirect(`/queen/fave/mine`)
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+// teamName input 
+// function changeTeamName() {
+// 	const teamInput = document.getElementById("teamName")
+// 	document.getElementById("teamNameDisplay").innerHTML = teamInput.value;
+// }
+
+// document.getElementById('submit').addEventListener("click", (changeTeamName))
 
 // Export the Router
 module.exports = router

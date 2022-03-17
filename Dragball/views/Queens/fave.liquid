@@ -17,7 +17,7 @@
                     {% if example.owner == userId %}
                     <form action="/team/{{ queen._id }}" method="POST">
 
-                        <input type="hidden" value="{{ teamMembers._id }}" name="id">
+                        <input type="hidden" value="{{ teamMembers.type }}" name="id">
 
 
                         <input type="submit" value="She's Team Material" class="btn btn-dark">

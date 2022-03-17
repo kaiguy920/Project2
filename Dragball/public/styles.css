@@ -10,3 +10,7 @@
     word-break: break-word;
     color: purple;
 }
+
+.form-group {
+    border-bottom: 20px;
+}
