@@ -4,12 +4,13 @@
     
         <h1>Oh, so you think you can make HerStory, huh?</h1>
         <h2 class="display-6">My Team</h2>
+
+
+
         <div class="row">
-            {% for queen in teamMember %}
+            {% for queen in team %}
                 <div class="card" style="width: 18rem;">
-                    <!-- card header -> name of fruit -->
-                    <!-- card body -> ready to eat as title, color as text-->
-                    <h5 class="card-header">{{queen.name}}</h5>
+                    <h5 class="card-header">{{ queen.id }}</h5>
                     <div class="card-body">
                         <img src="{{queen.image}}">
                         <p class="card-text"> 
@@ -19,6 +20,17 @@
                         <form action="/queen/fave/mine{{ queen._id }}?_method=DELETE" method="POST">
                             <input type="submit" value="Sashay Away" class="btn btn-danger">
                         </form>
+                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Order</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+
                         {% endif %}
                     </div>
                 </div>

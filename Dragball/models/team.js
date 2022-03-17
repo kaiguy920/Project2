@@ -26,8 +26,8 @@ const teamSchema = new Schema(
 	{ timestamps: true }
 )
 
-function arrayLimit(val) {
-	return val.length <= 5;
+function arrayLimit(team) {
+	return team.length <= 5;
 }
 
 const Team = model('Team', teamSchema)

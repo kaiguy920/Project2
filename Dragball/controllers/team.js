@@ -45,21 +45,56 @@ router.use((req, res, next) => {
 
 // JSON route to get direct look at all the objects in Team
 router.get("/json", (req, res) => {
-	// Team.find({})
-	// 	.then(team => {
-	// 		res.send({ team })
-	// 		// res.render('Queens/team')
-	// 	// 	})
-	// 	.catch (error => {
-	// 	res.redirect(`/error?error=${error}`)
-	// })
+	Team.deleteMany({})
+		.then(team => {
+			res.send({ team })
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
+
+
+router.post('/:queenId', async (req, res) => {
+	// destructure user info from req.session
+	// push id of queen into the team member array
+	// Team.push(queenId)
+	// Team.save()
+	let teamList;
+	const { username, userId, loggedIn } = req.session
+	const queenId = req.params.queenId
+	req.body.owner = req.session.userId
+	console.log("*********req.params.queenId*************", queenId);
+
+	await Team.find({ owner: userId })
+		.populate(Team.teamMembers)
+		.then((team) => {
+			team.push(queenId)
+			teamList = team
+
+		})
+
+	// find team by id that corresponds to user
+	req.body.teamMembers = teamList
+
+	Team.create(req.body)
+		.then((team) => {
+			console.log('this was returned from adding to team\n', team)
+			res.redirect(`/dragball`)
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+
 //  SHOW route to display the teams selected as favorites
-router.get('/team/mine', (req, res) => {
+router.get('/mine', (req, res) => {
 	const { username, userId, loggedIn } = req.session
 	Team.find({ owner: userId })
 		.then(team => {
+			console.log("here::: ", team)
 			// console.log("she's a super team\n", team)
 			res.render('Queens/team', { team, username, loggedIn })
 		})
@@ -69,39 +104,8 @@ router.get('/team/mine', (req, res) => {
 
 })
 
-router.post('/:queenId', async (req, res) => {
-	// destructure user info from req.session
-	// push id of queen into the team member array
-	// Team.push(queenId)
-	// Team.save()
-	let teamList;
-	const { username, userId, loggedIn } = req.session
-	await Team.find({ owner: userId })
-		.populate(Team.teamMembers)
-		.then((team) => {
-			console.log('teamssssssm\n', team)
-			team.push(req.params.queenId)
-			teamList = team
-			// res.redirect(`/dragball`)
-		})
-	// find team by id that corresponds to user
-	console.log("*********req.params.queenId*************", req.params.queenId);
-	req.body.owner = req.session.userId
-	req.body.teamMembers = [...teamList, req.params.queenId]
-	console.log("*********req.body*************", req.body);
-	Team.create(req.body)
-		.then((team) => {
-			console.log('this was returned from adding to team\n', team)
-			// res.redirect(`/dragball`)
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
-
-
 // DELETE route
-router.delete('/team/mine/:id', (req, res) => {
+router.delete('/mine/:id', (req, res) => {
 	// get the team id
 	const teamId = req.params.id
 	console.log("req.params.id", req.params.id);
