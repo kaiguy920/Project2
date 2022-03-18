@@ -12,14 +12,16 @@
 
             <label class="form-label">Team Name </label>
             <input type="text" name="name" placeholder="ex: Slaytina" class="form-control">
-
+            <input type="hidden" value="{{ team._id }}" name="id">
         </fieldset>
         <input type="submit" value="BAM!" class="btn btn-outline-secondary">
     </form>
-    <h1>{{ teamMembers.name }}</h1>
+  
+    <h1>{{ team.teamName }}</h1>
+   
 
     <h2 class="display-6">
-        {{teamName.name}} Top 5
+      Top 5
     </h2>
 
     <div class="row">

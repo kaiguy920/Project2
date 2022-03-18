@@ -50,7 +50,6 @@ router.post('/:queenId', (req, res) => {
 	req.body.owner = req.session.userId
 	// console.log("*********req.params.queenId*************", queenId);
 	// console.log("+++++++++req.body+++++++++++++++++\n", req.body)
-
 	Team.find({ owner: userId })
 		// .populate('teamMembers')
 		.then((team) => {
@@ -85,17 +84,21 @@ router.get('/mine', (req, res) => {
 // PUT route to add teamName to Team object
 router.put('/mine/name', (req, res) => {
 	// get the id
-	const teamNameId = req.params.id
-	// tell mongoose to update the team
-	Team.findByIdAndUpdate(teamNameId, req.body, { new: true })
+	const teamNameId = req.body.id
+	console.log("*****The body.id********", req.body.id);
+	console.log("*****The body********", req.body.name);
+
+	Team.findByIdAndUpdate(teamNameId, { teamName: req.body.name })
 
 		.then((team) => {
-			console.log('the updated team', team)
+			console.log('the updated team with teamName', team[0].teamName)
 			res.redirect(`/team/mine`)
 		})
 
 		.catch((error) => res.json(error))
 })
+
+
 
 // DELETE route
 router.delete('/mine/:id', (req, res) => {
