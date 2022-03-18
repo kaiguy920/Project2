@@ -51,29 +51,29 @@ router.post('/:queenId', async (req, res) => {
 
 	req.body.owner = req.session.userId
 	// console.log("*********req.params.queenId*************", queenId);
-	console.log("+++++++++req.body+++++++++++++++++\n", req.body)
+	// console.log("+++++++++req.body+++++++++++++++++\n", req.body)
 
 	await Team.find({ owner: userId })
-		.populate("teamMembers.Queen")
 		.then((team) => {
 			// this is making an array of arrays
-			// console.log('TEAMMMMMMMMMMMMMM', team);
-			team.push(queenId)
-			teamList = team
+			console.log('TEAMMMMMMMMMMMMMM', team);
+			team.teamMembers.push(queenId)
+			// team.save()
+			// teamList = team
 
 		})
 
 	// find team by id that corresponds to user
 	req.body.teamMembers = teamList
 
-	Team.create(req.body)
-		.then((team) => {
-			// console.log('this was returned from adding to team\n', team)
-			res.redirect(`/dragball`)
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
+	// Team.create(req.body)
+	// 	.then((team) => {
+	// 		console.log('this was returned from adding to team\n', team)
+	// 		res.redirect(`/dragball`)
+	// 	})
+	// 	.catch(error => {
+	// 		res.redirect(`/error?error=${error}`)
+	// 	})
 })
 
 
@@ -81,7 +81,8 @@ router.post('/:queenId', async (req, res) => {
 router.get('/mine', (req, res) => {
 	const { username, userId, loggedIn } = req.session
 	Team.find({ owner: userId })
-		.populate("teamMembers", "id name")
+		.populate('teamMembers')
+		.populate('owner')
 		.then(team => {
 			console.log("here::: ", team)
 			// console.log("she's a super team\n", team)

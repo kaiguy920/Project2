@@ -5,17 +5,19 @@
     <h1>Oh, so you think you can make HerStory, huh?</h1>
 
     <form action="/team/mine/name" method="POST">
-        <div class="form-group">
-            <label for="teamName">Team Name</label>
-            <input type="text" class="form-control" name="teamName" placeholder="ex: Slaytina">
-        </div>
-        <button type="submit" name="teamName" class="btn btn-primary">Submit</button>
+        <fieldset>
+
+            <label class="form-label">Team Name </label>
+            <input type="text" name="name" placeholder="ex: Slaytina" class="form-control">
+
+        </fieldset>
+        <input type="submit" value="BAM!" class="btn btn-outline-secondary">
     </form>
 
     <h1>{{ teamMembers.name }}</h1>
 
     <h2 class="display-6">
-        Top 5
+        {{teamName.name}} Top 5
     </h2>
 
     <div class="row">

@@ -58,7 +58,7 @@ router.get('/fave/mine', (req, res) => {
     const { username, userId, loggedIn } = req.session
     Queen.find({ owner: userId })
         .then(queen => {
-            console.log("she's a super queen\n", queen)
+            // console.log("she's a super queen\n", queen)
             res.render('Queens/fave', { queen, username, loggedIn })
         })
         .catch(error => {

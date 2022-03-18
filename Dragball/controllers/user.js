@@ -4,6 +4,7 @@
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const Team = require('../models/team')
 
 ////////////////////////////////////////////
 // Create router
@@ -29,12 +30,15 @@ router.post('/signup', async (req, res) => {
 	User.create(req.body)
 		// if created successfully redirect to login
 		.then((user) => {
+			Team.create({ owner: user.id })
+			console.log("user", user);
 			res.redirect('/auth/login')
 		})
 		// if an error occurs, send err
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
 		})
+
 })
 
 // two login routes
