@@ -39,7 +39,7 @@ router.get("/json", (req, res) => {
 
 
 
-router.post('/:queenId', async (req, res) => {
+router.post('/:queenId', (req, res) => {
 	// destructure user info from req.session
 	// push id of queen into the team member array
 	// Team.push(queenId)
@@ -53,12 +53,13 @@ router.post('/:queenId', async (req, res) => {
 	// console.log("*********req.params.queenId*************", queenId);
 	// console.log("+++++++++req.body+++++++++++++++++\n", req.body)
 
-	await Team.find({ owner: userId })
+	Team.find({ owner: userId })
+		// .populate('teamMembers')
 		.then((team) => {
 			// this is making an array of arrays
-			console.log('TEAMMMMMMMMMMMMMM', team);
-			team.teamMembers.push(queenId)
-			// team.save()
+			console.log('TEAMMMMMMMMMMMMMM', team[0].owner);
+			team[0].teamMembers.push(queenId)
+			team[0].save()
 			// teamList = team
 
 		})
@@ -84,9 +85,9 @@ router.get('/mine', (req, res) => {
 		.populate('teamMembers')
 		.populate('owner')
 		.then(team => {
-			console.log("here::: ", team)
+			console.log("here::: ", team[0].teamMembers)
 			// console.log("she's a super team\n", team)
-			res.render('Queens/team', { team, username, loggedIn })
+			res.render('Queens/team', { team: team[0], username, loggedIn })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
