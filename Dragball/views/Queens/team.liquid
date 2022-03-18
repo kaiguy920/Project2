@@ -1,10 +1,13 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-md">
-
+</br>
+</br>
+</br>
     <h1>Oh, so you think you can make HerStory, huh?</h1>
-
-    <form action="/team/mine/name" method="POST">
+    
+   
+    <form action="/team/mine/name/?_method=PUT" method="POST">
         <fieldset>
 
             <label class="form-label">Team Name </label>
@@ -13,7 +16,6 @@
         </fieldset>
         <input type="submit" value="BAM!" class="btn btn-outline-secondary">
     </form>
-
     <h1>{{ teamMembers.name }}</h1>
 
     <h2 class="display-6">
@@ -22,11 +24,11 @@
 
     <div class="row">
         {% for queen in team.teamMembers %}
-        <p>***{{ queen.name }}</p>
+    
         <div class="card" style="width: 18rem;">
-            <h5 class="card-header">{{ queen._id }}</h5>
+            <h5 class="card-header">{{ queen.name }}</h5>
             <div class="card-body">
-                <img src="{{queen.image}}">
+                <img src="{{queen.image}}" height="200" width="150">
                 <p class="card-text">
 
                 </p>

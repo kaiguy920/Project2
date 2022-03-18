@@ -71,7 +71,7 @@ router.get('/fave/mine', (req, res) => {
 router.delete('/fave/mine/:id', (req, res) => {
     // get the queen id
     const queenId = req.params.id
-    console.log("req.params.id", req.params.id);
+    // console.log("*_*_*_*_*_*req.params.id*_*_*_*_*_*_*_*_*\n", req.params.id);
     // delete the queen
     Queen.findByIdAndRemove(queenId)
         .then((queen) => {
