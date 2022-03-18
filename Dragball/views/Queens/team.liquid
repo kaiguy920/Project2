@@ -6,8 +6,8 @@
 </br>
     <h1>Oh, so you think you can make HerStory, huh?</h1>
     
-   
-    <form action="/team/mine/name/?_method=PUT" method="POST">
+{% if team.teamName == blank %}
+    <form id="teamNameInput" action="/team/mine/name/?_method=PUT" method="POST">
         <fieldset>
 
             <label class="form-label">Team Name </label>
@@ -16,9 +16,9 @@
         </fieldset>
         <input type="submit" value="BAM!" class="btn btn-outline-secondary">
     </form>
-  
+{% else %}
     <h1>{{ team.teamName }}</h1>
-   
+   {% endif %}
 
     <h2 class="display-6">
       Top 5

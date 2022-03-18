@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Team = require('../models/team')
 const Queen = require('../models/queen')
 
+
 // Create router
 const router = express.Router()
 
@@ -85,6 +86,7 @@ router.get('/mine', (req, res) => {
 router.put('/mine/name', (req, res) => {
 	// get the id
 	const teamNameId = req.body.id
+	// const teamNameInput = document.getElementById('teamNameInput')
 	console.log("*****The body.id********", req.body.id);
 	console.log("*****The body********", req.body.name);
 
@@ -92,6 +94,7 @@ router.put('/mine/name', (req, res) => {
 
 		.then((team) => {
 			console.log('the updated team with teamName', team[0].teamName)
+			// teamNameInput.remove()
 			res.redirect(`/team/mine`)
 		})
 
@@ -106,7 +109,7 @@ router.delete('/mine/:id', (req, res) => {
 	const teamId = req.params.id
 	console.log("*_*_*_*_*_*_*req.params.id*_*_*_*_*_*_*_*", req.params.id);
 	// delete the team
-	Team.findByIdAndRemove(teamId)
+	Queen.findByIdAndRemove(teamId)
 		.then((team) => {
 			// console.log('this is the response from FBID', team)
 			res.redirect('/team/mine')
