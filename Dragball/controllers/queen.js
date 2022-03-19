@@ -34,7 +34,7 @@ router.post('/fave', (req, res) => {
     Queen.create(req.body)
         .then((queen) => {
             console.log('this was returned from adding to fave\n', queen)
-            res.redirect(`/dragball`)
+            res.redirect('/queen/fave/mine')
         })
         .catch(error => {
             res.redirect(`/error?error=${error}`)

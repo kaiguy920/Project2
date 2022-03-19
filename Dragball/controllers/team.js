@@ -59,7 +59,8 @@ router.post('/:queenId', (req, res) => {
 			// if (team[0].teamMembers.length <= 6) {
 			team[0].teamMembers.push(queenId)
 			team[0].save()
-			res.redirect('/dragball')
+			// res.redirect('/dragball')
+			res.redirect('/team/mine')
 			// 	} else {
 			// 		res.render('Queens/tooMany')
 			// 	}
@@ -94,15 +95,16 @@ router.put('/mine/name', (req, res) => {
 	console.log("*****The body.id********", req.body.id);
 	console.log("*****The body********", req.body.name);
 
-	Team.findByIdAndUpdate(teamNameId, { teamName: req.body.name })
-
-		.then((team) => {
-			console.log('the updated team with teamName', team[0].teamName)
-			// teamNameInput.remove()
-			res.redirect(`/team/mine`)
+	Team.findByIdAndUpdate(teamNameId, { teamName: req.body.name },
+		function (err, team) {
+			if (err) {
+				console.log(err)
+			}
+			else {
+				console.log('team', team)
+				res.redirect('/team/mine')
+			}
 		})
-
-		.catch((error) => res.json(error))
 })
 
 
@@ -119,44 +121,7 @@ router.delete('/mine/:id', (req, res) => {
 		console.log('teammmm', team)
 		res.redirect('/team/mine')
 	});
-
-	// delete the team
-	// Team.findById(teamId)
-	// 	.then((team) => {
-
-	// 		team.teamMembers.filter(queen => {
-	// 			if (queen.toString() === queenId) {
-	// 				queen.remove()
-	// 			}
-	// 		})
-	// 		console.log('teammmmmmmmmmmm', team)
-	// 		team.markModified('team');
-	// 		team.save()
-	// 		console.log('team::::::::::::::', team)
-
-	// 		res.send('/team/mine')
-	// 	})
-
-	// 	.catch(error => {
-	// 		res.redirect(`/error?error=${error}`)
-	// 	})
 })
-
-// DELETE route
-// router.delete('/mine/:id', (req, res) => {
-// 	// get the team id
-// 	const teamId = req.params.id
-// 	console.log("*_*_*_*_*_*_*req.params.id*_*_*_*_*_*_*_*", req.params.id);
-// 	// delete the team
-// 	Queen.findByIdAndRemove(teamId)
-// 		.then((team) => {
-// 			// console.log('this is the response from FBID', team)
-// 			res.redirect('/team/mine')
-// 		})
-// 		.catch(error => {
-// 			res.redirect(`/error?error=${error}`)
-// 		})
-// })
 
 
 // Export the Router
