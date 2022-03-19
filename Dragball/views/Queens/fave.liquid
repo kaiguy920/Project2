@@ -13,20 +13,18 @@
             <h5 class="card-header">{{queen.name}}</h5>
             <div class="card-body">
                 <img src="{{queen.image}}" height="200" width="150">
-                <p class="card-text">
-
-                </p>
-                <div class="btn-group">
+                
+                <div class="cardButtons">
                     {% if example.owner == userId %}
                     <form action="/team/{{ queen._id }}" method="POST">
 
                         <input type="hidden" value="{{ teamMembers._id }}" name="id">
                         <input type="hidden" value="{{ team[0].teamMembers.name }}" name="name">
 
-                        <input type="submit" value="She's Team Material" class="btn btn-dark">
+                        <input type="submit" value="She's Team Material" class="btn btn-secondary btn-sm btn-block favButton">
                     </form>
                     <form action="/queen/fave/mine/{{ queen._id }}?_method=DELETE" method="POST">
-                        <input type="submit" value="Sashay Away" class="btn btn-danger">
+                        <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block">
                     </form>
 
                     {% endif %}

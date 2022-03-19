@@ -9,7 +9,6 @@ const router = express.Router()
 
 // Router Middleware
 // Authorization middleware
-// If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
 router.use((req, res, next) => {
     // checking the loggedIn boolean of our session
     if (req.session.loggedIn) {
@@ -26,10 +25,9 @@ router.use((req, res, next) => {
 // =====================================================================
 //                              ROUTES
 // =====================================================================
-// Icreate -> POST route that actually calls the db and makes a new document of Queen to render to the fave's
+// create -> POST route that actually calls the db and makes a new document of Queen to render to the fave's
 router.post('/fave', (req, res) => {
     // destructure user info from req.session
-    // console.log("*********body odyyy*************", req.body);
     req.body.owner = req.session.userId
     Queen.create(req.body)
         .then((queen) => {
@@ -42,23 +40,21 @@ router.post('/fave', (req, res) => {
 })
 
 // JSON route to get direct look at all the objects in Queen
-router.get("/json", (req, res) => {
-    Queen.find({})
-        // Queen.deleteMany({ name: "Victoria 'Porkchop' Parker" })
-        .then(queen => {
-            res.send({ queen })
-        })
-        .catch(error => {
-            res.redirect(`/error?error=${error}`)
-        })
-})
+// router.get("/json", (req, res) => {
+//     Queen.find({})
+//         .then(queen => {
+//             res.send({ queen })
+//         })
+//         .catch(error => {
+//             res.redirect(`/error?error=${error}`)
+//         })
+// })
 
 //  SHOW route to display the queens selected as favorites
 router.get('/fave/mine', (req, res) => {
     const { username, userId, loggedIn } = req.session
     Queen.find({ owner: userId })
         .then(queen => {
-            // console.log("she's a super queen\n", queen)
             res.render('Queens/fave', { queen, username, loggedIn })
         })
         .catch(error => {
@@ -71,7 +67,6 @@ router.get('/fave/mine', (req, res) => {
 router.delete('/fave/mine/:id', (req, res) => {
     // get the queen id
     const queenId = req.params.id
-    // console.log("*_*_*_*_*_*req.params.id*_*_*_*_*_*_*_*_*\n", req.params.id);
     // delete the queen
     Queen.findByIdAndRemove(queenId)
         .then((queen) => {

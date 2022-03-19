@@ -1,5 +1,7 @@
 {% layout 'layout.liquid' %}
+<link rel="stylesheet" href="/public/show.css">
 {% block content %}
+
 <div class="container-md">
 
 </br>
@@ -48,7 +50,7 @@
            <input type="hidden" value="{{queenData.id}}" name="queenId">
            <input type="hidden" value="{{queenData.name}}" name="name">
            <input type="hidden" value="{{queenData.image_url}}" name="image">
-            <input type="submit" value="She's a Fave" class="btn btn-dark">
+            <input type="submit" value="⭐️" class="btn btn-outline-secondary btn-sm btn-block favButton">
             </form>
         </div>
         

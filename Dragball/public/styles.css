@@ -1,7 +1,7 @@
 body {
-    background: #ffebc2;
-    ;
-}
+    background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm301-beer-1b.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=f143277f2561fddfcea0460cc4736b00");
+    background-size:contain;
+  }
 
 .queensContainer {
     display: flex;
@@ -40,9 +40,6 @@ body {
     margin-bottom: 10px;
 }
 
-.favButton:hover {
-    color: white;
-}
 
 .cardButtons {
    width: calc(100% - 20px);
@@ -61,11 +58,31 @@ img:hover {
   
   img {
       margin-top: -2px;
+      opacity: .7;
+      
   }
 
   .forWhat {
     pointer-events: none;
-margin-top: 20px;
-margin-left: 30%;
+    margin-top: 20px;
+    margin-left: 30%;
+    border-radius: 15px;
+    border: 5px solid whitesmoke;
+    opacity: .9;
   }
 
+.pageHeader {
+    background-color: whitesmoke;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    border: 4px solid pink;
+    font-size: 55px;
+}
+
+.indexHeader {
+    font-family: 'Niconne', cursive;
+    text-align: center;
+    font-size: 60px;
+    color: black;
+    padding: 20px;
+}

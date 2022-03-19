@@ -31,16 +31,16 @@
             <h5 class="card-header">{{ queen.name }}</h5>
             <div class="card-body">
                 <img src="{{queen.image}}" height="200" width="150">
-                <p class="card-text">
-
-                </p>
+               
                 {% if example.owner == userId %}
+                <div class="cardButtons">
                 <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
                     <input type="hidden" value="{{ team._id }}" name="teamId">
                     <input type="hidden" value="{{ queen._id }}" name="queenId">
-                    <input type="submit" value="Sashay Away" class="btn btn-danger">
+                    <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block">
+                </div>
                 </form>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="queenRank">Order</label>
                     <select class="form-control" id="exampleFormControlSelect1">
                         <option>1</option>
@@ -49,7 +49,7 @@
                         <option>4</option>
                         <option>5</option>
                     </select>
-                </div>
+                </div> -->
 
                 {% endif %}
             </div>

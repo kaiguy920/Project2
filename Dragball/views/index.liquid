@@ -1,13 +1,15 @@
 {% layout "layout.liquid" %}
 {% block content %}
-
-<h1>Fantasy Dragball League</h1>
+</br>
+</br>
+</br>
+<h1 class="pageHeader">Not Your Father's Fantasy Dragball League</h1>
 <img class="forWhat"
     src="https://scontent.ftpa1-1.fna.fbcdn.net/v/t39.30808-6/276158459_1385968155165475_4242348345812788734_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=0debeb&_nc_ohc=LCFePbwjNhwAX_iXHu4&_nc_ht=scontent.ftpa1-1.fna&oh=00_AT-MDMzvzi7oMZIaLtgmVm2XXfb1fi85Ym59U3PXsgnkAw&oe=623960F3"
     height="350" width="500" alt="for what?">
 
 <div class="container">
-    <h1>RoyalTea</h1>
+    <h1 class=indexHeader>RoyalTea</h1>
     <div class="queensContainer">
         {% for queenData in queenData %}
         <div class="queenContainer"">
@@ -27,11 +29,10 @@
                         <input type="hidden" value="{{queenData.id}}" name="queenId">
                         <input type="hidden" value="{{queenData.name}}" name="name">
                         <input type="hidden" value="{{queenData.image_url}}" name="image">
-                        <input type="submit" value="She's a Fave"
-                            class="btn btn-outline-warning btn-sm btn-block favButton">
+                        <input type="submit" value="⭐️" class="btn btn-outline-secondary btn-sm btn-block favButton">
                     </form>
                 </div>
-                <a href="/dragball/{{ queenData.id}}" class="btn btn-dark btn-sm btn-block">View Stats</a>
+                <a href="/dragball/{{ queenData.id}}" class="btn btn-secondary btn-sm btn-block">View Stats</a>
             </div>
         </div>
         {% endfor %}

@@ -95,19 +95,14 @@ router.get('/mine', (req, res) => {
 
 // PUT route to add teamName to Team object
 router.put('/mine/name', (req, res) => {
-	// get the id
+	// get the id of the team to update the team name
 	const teamNameId = req.body.id
-	// const teamNameInput = document.getElementById('teamNameInput')
-	console.log("*****The body.id********", req.body.id);
-	console.log("*****The body********", req.body.name);
-
 	Team.findByIdAndUpdate(teamNameId, { teamName: req.body.name },
 		function (err, team) {
 			if (err) {
-				console.log(err)
+				res.redirect(`/error?error=${error}`)
 			}
 			else {
-				console.log('team', team)
 				res.redirect('/team/mine')
 			}
 		})
@@ -119,12 +114,11 @@ router.put('/mine/name', (req, res) => {
 router.delete('/mine/:id', (req, res) => {
 	// get the team id
 	const teamId = req.body.teamId
+	// get the queen id
 	const queenId = req.params.id
-	console.log("*_*_*_*_*_*_*req.body.id*_*_*_*_*_*_*_*", teamId);
-	console.log("*_*_*_*_*_*_*queenID*_*_*_*_*_*_*_*", queenId);
-
+	// identifying the team based on it's id & removing the team member with the queenId that corresponds with the "Sashay Away" (delete) button
+	// this was a way to bypass the same queen to get deleted out of the fave list as well
 	Team.updateOne({ _id: teamId }, { $pull: { teamMembers: queenId } }, function (err, team) {
-		console.log('teammmm', team)
 		res.redirect('/team/mine')
 	});
 })
