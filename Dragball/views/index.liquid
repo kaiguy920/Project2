@@ -1,38 +1,42 @@
 {% layout "layout.liquid" %}
 {% block content %}
 
-    <h1>Fantasy Dragball League</h1>
-    <img class="forWhat" src="https://scontent.ftpa1-1.fna.fbcdn.net/v/t39.30808-6/276158459_1385968155165475_4242348345812788734_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=0debeb&_nc_ohc=LCFePbwjNhwAX_iXHu4&_nc_ht=scontent.ftpa1-1.fna&oh=00_AT-MDMzvzi7oMZIaLtgmVm2XXfb1fi85Ym59U3PXsgnkAw&oe=623960F3" height="350" width="500"alt="for what?">
-    
-    <div class="container">
-        <h1>RoyalTea</h1> 
-            <div class="queenContainer">
-            {% for queenData in queenData %}
-            <div>
-               <h3 class="aboutQueen"> <strong>{{queenData.name}}</strong> </h3>
-                </br>    
-                {% if queenData.winner %}
-                <img src="{{queenData.image_url}}" alt="wut" height="450" width="300" style="border: 5px solid rgb(255, 196, 0)">
-                {% else %}
-                <img src="{{queenData.image_url}}" alt="wut" height="450" width="300"></a>
-                {% endif %}
-                <p class="aboutQueen">{{queenData.quote}}</p>
-            </br>
-            
-                <a href="/dragball/{{ queenData.id}}" class="btn btn-dark">View Stats</a>
-                <div class="btn-group">
+<h1>Fantasy Dragball League</h1>
+<img class="forWhat"
+    src="https://scontent.ftpa1-1.fna.fbcdn.net/v/t39.30808-6/276158459_1385968155165475_4242348345812788734_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=0debeb&_nc_ohc=LCFePbwjNhwAX_iXHu4&_nc_ht=scontent.ftpa1-1.fna&oh=00_AT-MDMzvzi7oMZIaLtgmVm2XXfb1fi85Ym59U3PXsgnkAw&oe=623960F3"
+    height="350" width="500" alt="for what?">
+
+<div class="container">
+    <h1>RoyalTea</h1>
+    <div class="queensContainer">
+        {% for queenData in queenData %}
+        <div class="queenContainer"">
+            {% if queenData.winner %}
+            <img src=" {{queenData.image_url}}" alt="wut" height="250" width="200"
+            style="border: 5px solid rgb(255, 196, 0)">
+            {% else %}
+            <img src="{{queenData.image_url}}" alt="wut" height="250" width="200"></a>
+            {% endif %}
+            <h5 class="queenName"> <strong>{{queenData.name}}</strong> </h5>
+            <p class="aboutQueen">{{queenData.quote}}</p>
+
+            <div class="cardButtons">
+                <div>
                     <form action="/queen/fave" method="POST">
-                   <!-- 3 inputs for id, name & image with type hidden to push info into the object model -->
-                   <input type="hidden" value="{{queenData.id}}" name="queenId">
-                   <input type="hidden" value="{{queenData.name}}" name="name">
-                   <input type="hidden" value="{{queenData.image_url}}" name="image">
-                   <input type="submit" value="She's a Fave" class="btn btn-dark">
+                        <!-- 3 inputs for id, name & image with type hidden to push info into the object model -->
+                        <input type="hidden" value="{{queenData.id}}" name="queenId">
+                        <input type="hidden" value="{{queenData.name}}" name="name">
+                        <input type="hidden" value="{{queenData.image_url}}" name="image">
+                        <input type="submit" value="She's a Fave"
+                            class="btn btn-outline-warning btn-sm btn-block favButton">
                     </form>
                 </div>
-         </div>
-        {% endfor %}
+                <a href="/dragball/{{ queenData.id}}" class="btn btn-dark btn-sm btn-block">View Stats</a>
+            </div>
         </div>
-    </div> 
+        {% endfor %}
+    </div>
+</div>
 
 
 {% endblock %}

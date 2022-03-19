@@ -1,14 +1,53 @@
-.queenContainer {
+body {
+    background: #ffebc2;
+    ;
+}
+
+.queensContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}   
+}  
+
+.queenContainer {
+    width: 200px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    background: white;
+    word-break: break-word;
+    padding-bottom: 10px;
+}
+
+.queenName {
+    color: rgb(70, 65, 154);
+    margin-top: 10px;
+}
 
 .aboutQueen {
-    width: 250px;
+    width: 180px;
     white-space: normal;
-    word-break: break-word;
-    color: purple;
+    color: rgb(70, 65, 154, .6);
+    font-size: 12px;
+}
+
+.favButton {
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.favButton:hover {
+    color: white;
+}
+
+.cardButtons {
+   width: calc(100% - 20px);
+   display: flex;
+   flex-direction: column;
 }
 
 .form-group {
@@ -21,7 +60,7 @@ img:hover {
   }
   
   img {
-      border-radius: 15px;
+      margin-top: -2px;
   }
 
   .forWhat {
@@ -29,3 +68,4 @@ img:hover {
 margin-top: 20px;
 margin-left: 30%;
   }
+
