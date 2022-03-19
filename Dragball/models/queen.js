@@ -9,15 +9,22 @@ const { Schema, model } = mongoose
 
 const queenSchema = new Schema(
     {
-        queenId: { type: String, required: true },
-        name: { type: String, required: true },
+        queenId: {
+            type: String, required: true
+        },
+        name: {
+            type: String, required: true,
+            unique: true
+        },
         image: { type: String, required: true },
         owner: {
             type: Schema.Types.ObjectID,
             ref: 'User',
         }
     },
-    { timestamps: true }
+    {
+        timestamps: true,
+    }
 )
 
 const Queen = model('Queen', queenSchema)

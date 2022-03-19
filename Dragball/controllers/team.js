@@ -50,23 +50,29 @@ router.post('/:queenId', (req, res) => {
 
 	req.body.owner = req.session.userId
 	// console.log("*********req.params.queenId*************", queenId);
-	// console.log("+++++++++req.body+++++++++++++++++\n", req.body)
-	Team.find({ owner: userId })
-		// .populate('teamMembers')
-		.then((team) => {
-			// this is making an array of arrays
-			// console.log('TEAMMMMMMMMMMMMMM', team[0].user);
-			// if (team[0].teamMembers.length <= 6) {
-			team[0].teamMembers.push(queenId)
-			team[0].save()
-			// res.redirect('/dragball')
-			res.redirect('/team/mine')
-			// 	} else {
-			// 		res.render('Queens/tooMany')
-			// 	}
-			// })
 
-		})
+
+	// console.log("+++++++++req.body+++++++++++++++++\n", req.body)
+	Team.updateOne({ owner: userId }, { $addToSet: { teamMembers: queenId } }, function (err, team) {
+		console.log('teammmm', team)
+		res.redirect('/team/mine')
+	});
+	// Team.find({ owner: userId })
+	// 	// .populate('teamMembers')
+	// 	.then((team) => {
+	// 		// this is making an array of arrays
+	// 		// console.log('TEAMMMMMMMMMMMMMM', team[0].user);
+	// 		// if (team[0].teamMembers.length <= 6) {
+	// 		team[0].teamMembers.push(queenId)
+	// 		team[0].save()
+	// 		// res.redirect('/dragball')
+	// 		res.redirect('/team/mine')
+	// 		// 	} else {
+	// 		// 		res.render('Queens/tooMany')
+	// 		// 	}
+	// 		// })
+
+	// 	})
 })
 
 
