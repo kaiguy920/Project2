@@ -36,6 +36,8 @@
                 </p>
                 {% if example.owner == userId %}
                 <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
+                    <input type="hidden" value="{{ team._id }}" name="teamId">
+                    <input type="hidden" value="{{ queen._id }}" name="queenId">
                     <input type="submit" value="Sashay Away" class="btn btn-danger">
                 </form>
                 <div class="form-group">

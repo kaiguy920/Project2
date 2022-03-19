@@ -23,3 +23,9 @@ img:hover {
   img {
       border-radius: 15px;
   }
+
+  .forWhat {
+    pointer-events: none;
+margin-top: 20px;
+margin-left: 30%;
+  }

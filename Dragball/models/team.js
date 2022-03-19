@@ -11,12 +11,14 @@ const { Schema, model } = mongoose
 const teamSchema = new Schema(
 	{
 		teamName: { type: String },
-		teamMembers: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Queen',
-			}
-		],
+		teamMembers:
+			[
+				{
+					type: Schema.Types.ObjectId,
+					ref: 'Queen'
+				}
+			],
+
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
@@ -28,7 +30,6 @@ const teamSchema = new Schema(
 
 // set ref to an array & set limit to 5
 // validate: [arrayLimit, '{PATH} exceeds the limit of 5']
-
 // function arrayLimit(team) {
 // 	return team.length <= 5;
 // }

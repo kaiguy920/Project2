@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Team = require('../models/team')
 const Queen = require('../models/queen')
-
+// const teamNameInput = document.getElementById('teamNameInput')
 
 // Create router
 const router = express.Router()
@@ -55,13 +55,17 @@ router.post('/:queenId', (req, res) => {
 		// .populate('teamMembers')
 		.then((team) => {
 			// this is making an array of arrays
-			console.log('TEAMMMMMMMMMMMMMM', team[0].user);
+			// console.log('TEAMMMMMMMMMMMMMM', team[0].user);
+			// if (team[0].teamMembers.length <= 6) {
 			team[0].teamMembers.push(queenId)
 			team[0].save()
 			res.redirect('/dragball')
+			// 	} else {
+			// 		res.render('Queens/tooMany')
+			// 	}
+			// })
 
 		})
-
 })
 
 
@@ -106,19 +110,53 @@ router.put('/mine/name', (req, res) => {
 // DELETE route
 router.delete('/mine/:id', (req, res) => {
 	// get the team id
-	const teamId = req.params.id
-	console.log("*_*_*_*_*_*_*req.params.id*_*_*_*_*_*_*_*", req.params.id);
+	const teamId = req.body.teamId
+	const queenId = req.params.id
+	console.log("*_*_*_*_*_*_*req.body.id*_*_*_*_*_*_*_*", teamId);
+	console.log("*_*_*_*_*_*_*queenID*_*_*_*_*_*_*_*", queenId);
+
+	Team.updateOne({ _id: teamId }, { $pull: { teamMembers: queenId } }, function (err, team) {
+		console.log('teammmm', team)
+		res.redirect('/team/mine')
+	});
+
 	// delete the team
-	Queen.findByIdAndRemove(teamId)
-		.then((team) => {
-			// console.log('this is the response from FBID', team)
-			res.redirect('/team/mine')
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
+	// Team.findById(teamId)
+	// 	.then((team) => {
+
+	// 		team.teamMembers.filter(queen => {
+	// 			if (queen.toString() === queenId) {
+	// 				queen.remove()
+	// 			}
+	// 		})
+	// 		console.log('teammmmmmmmmmmm', team)
+	// 		team.markModified('team');
+	// 		team.save()
+	// 		console.log('team::::::::::::::', team)
+
+	// 		res.send('/team/mine')
+	// 	})
+
+	// 	.catch(error => {
+	// 		res.redirect(`/error?error=${error}`)
+	// 	})
 })
 
+// DELETE route
+// router.delete('/mine/:id', (req, res) => {
+// 	// get the team id
+// 	const teamId = req.params.id
+// 	console.log("*_*_*_*_*_*_*req.params.id*_*_*_*_*_*_*_*", req.params.id);
+// 	// delete the team
+// 	Queen.findByIdAndRemove(teamId)
+// 		.then((team) => {
+// 			// console.log('this is the response from FBID', team)
+// 			res.redirect('/team/mine')
+// 		})
+// 		.catch(error => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 
 
 // Export the Router
