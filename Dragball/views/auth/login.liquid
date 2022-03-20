@@ -5,16 +5,19 @@
 </br>
 </br>
 </br>
+</br>
 
     <form action="/auth/login" method="POST">
-        <fieldset>
-            <legend>Welcome Back, Please log in to continue</legend>
+        <fieldset> 
+            <div class="authHeader">
+            <h2 class="legend">Halleloo! We knew you'd be back</h2>
             <label class="form-label">Username: </label>
             <input type="text" name="username" placeholder="username" class="form-control" required>
             <label class="form-label">Password</label>
             <input type="password" name="password" placeholder="enter password" class="form-control" required>
         </fieldset>
-        <input type="submit" value="Log In" class="btn btn-success">
+    </br>
+        <input type="submit" value="Log In" class="btn btn-secondary">
     </form>
 </div>
 
