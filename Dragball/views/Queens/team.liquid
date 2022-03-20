@@ -12,35 +12,41 @@
     <form id="teamNameInput" action="/team/mine/name/?_method=PUT" method="POST">
         <fieldset>
 
-            <label class="form-label">Team Name </label>
-            <input type="text" name="name" placeholder="ex: Slaytina" class="form-control">
-            <input type="hidden" value="{{ team._id }}" name="id">
+
+            <div>
+                <label class="form-label">Team Name </label>
+                <input type="text" name="name" placeholder="ex: Slaytina" class="form-control">
+                <input type="hidden" value="{{ team._id }}" name="id">
         </fieldset>
-    </br>
+        </br>
         <input type="submit" value="BAM!" class="btn btn-secondary">
-    </form>
-    {% else %}
-    <h1 class="indexHeader">Team {{ team.teamName }}</h1>
-    {% endif %}
+</div>
+
+</form>
+{% else %}
+<div class="centerHeader">
+<h1 class="indexHeader">Team {{ team.teamName }}</h1>
+</div>
+{% endif %}
 
 
-    <div class="row">
-        {% for queen in team.teamMembers %}
+<div class="row">
+    {% for queen in team.teamMembers %}
 
-        <div class="card" style="width: 15rem;">
-            <h5 class="card-header" style="margin: 0 -15px;">{{ queen.name }}</h5>
-            <div class="card-body center">
-                <img class="card-image" src="{{queen.image}}" height="200" width="150">
+    <div class="card" style="width: 15rem;">
+        <h5 class="card-header" style="margin: 0 -15px;">{{ queen.name }}</h5>
+        <div class="card-body center">
+            <img class="card-image" src="{{queen.image}}" height="200" width="150">
 
-                {% if example.owner == userId %}
-                <div>
-                    <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
-                        <input type="hidden" value="{{ team._id }}" name="teamId">
-                        <input type="hidden" value="{{ queen._id }}" name="queenId">
-                        <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block favButton">
-                </div>
-                </form>
-                <!-- <div class="form-group">
+            {% if example.owner == userId %}
+            <div class="cardButtons">
+                <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
+                    <input type="hidden" value="{{ team._id }}" name="teamId">
+                    <input type="hidden" value="{{ queen._id }}" name="queenId">
+                    <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block favButton">
+            </div>
+            </form>
+            <!-- <div class="form-group">
                     <label for="queenRank">Order</label>
                     <select class="form-control" id="exampleFormControlSelect1">
                         <option>1</option>
@@ -51,10 +57,10 @@
                     </select>
                 </div> -->
 
-                {% endif %}
-            </div>
+            {% endif %}
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 </div>
 {% endblock %}

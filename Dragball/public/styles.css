@@ -11,11 +11,23 @@
     width: 550px;
 }
 
+.authInput {
+    margin-top: 40px;
+}
+
 .authImg {
     pointer-events: none;
     padding: 10px;
    display: flex;
    justify-content: center;
+}
+
+.backrolls {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 50%
 }
 
 body {
@@ -26,6 +38,14 @@ body {
 
   .card {
       margin-right: 20px;
+      margin-top: 20px;
+      margin-bottom: 50px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
 
@@ -45,12 +65,24 @@ body {
    width: calc(100% - 20px);
    display: flex;
    flex-direction: column;
+   
+   
 }
 
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.centerHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.error {
+    background: whitesmoke;
 }
 
 
@@ -67,6 +99,8 @@ body {
     font-size: 20px;
       -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: whitesmoke;
+    background: black;
+    width: 110px;
 
 }
 
@@ -89,11 +123,8 @@ h6 {
     font-size: 70px;
     color: whitesmoke;
     text-decoration: underline;
-    /* -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: whitesmoke; */
-    /* padding: 20px; */
     background-color: black;
-   
+    width: 450px;
 }
 
 img:hover {
@@ -203,6 +234,7 @@ height: 60px;
 
 .showh6 {
     font-weight: bold;
+    font-style: italic;
 }
 
 .signup {

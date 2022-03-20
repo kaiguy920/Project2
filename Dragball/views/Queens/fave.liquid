@@ -7,7 +7,9 @@
 </br>
 
     <h1 class="pageHeader">Oh, so you think you can make HerStory, huh?</h1>
+    <div class="centerHeader">
     <h2 class="indexHeader">My Faves</h2>
+</div>
     <div class="row">
         {% for queen in queen %}
         <div class="card" style="width: 15rem;">
@@ -24,9 +26,11 @@
 
                         <input type="submit" value="She's Team Material" class="btn btn-secondary btn-sm btn-block favButton">
                     </form>
+                    <div class="cardButtons">
                     <form action="/queen/fave/mine/{{ queen._id }}?_method=DELETE" method="POST">
                         <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block favButton">
                     </form>
+                </div>
 
                     {% endif %}
                 </div>

@@ -21,20 +21,21 @@
                     </div>
 
                     <div class="win">
+                        <p>____________________________</p>
                     <h6 class="showh6">Are they a winner, baby?</h6>
-                    <p> {% if queenData.winner %}
+                    <li> {% if queenData.winner %}
                         YAS
                         {% else %}
                         Henny, no
-                        {% endif %} </p>
+                        {% endif %} </li>
                     </div>
                     <div class="congen">
                     <h6 class="showh6" >Miss Congeneality?</h6>
-                    <p> {% if queenData.missCongeniality %}
+                    <li> {% if queenData.missCongeniality %}
                         Mhm, she's a queen, for the queens
                         {% else %}
                         No, she's throws the shade
-                        {% endif %} </p>
+                        {% endif %} </li>
                         </div>
                 </div>
 
@@ -59,16 +60,18 @@
                 <div class="inner">
                     <div class="lip">
                     <h4 class="showh4">Lip Sync Stats</h4>
-                    <p>How Many: {{queenData.howMany}}</p>
-                    <p>Wins: {{queenData.lipsyncWin}} </p>
+                    <li>How Many: {{queenData.howMany}}</li>
+                    <li>Wins: {{queenData.lipsyncWin}} </li>
+                    <p>____________________________</p>
                     <p>Batting average: {{ queenData.lipsyncWin | divided_by: queenData.howMany }}</p>
+                    <p>____________________________</p>
                 </div>
 
                 <div class="chall">
                     <h4 class="showh4">Challenge Wins</h4>
                     
-                    <p>Mini's: {{ queenData.miniWins }}</p>
-                     <p>Maxi's: {{ queenData.maxiWins }}</p>
+                    <li>Mini's: {{ queenData.miniWins }}</li>
+                     <li>Maxi's: {{ queenData.maxiWins }}</li>
                 
 
                 </div>

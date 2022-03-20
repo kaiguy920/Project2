@@ -10,15 +10,25 @@
     <form action="/auth/login" method="POST">
         <fieldset> 
             <div class="authHeader">
-            <h2 class="legend">Halleloo! We knew you'd be back</h2>
+            <h2 class="legend">You're a Champion!
+                I knew you'd be back</h2>
+
+            <div class="signup">
+                <div class="authImg">
+       <img class="authImg" src="https://scontent.ftpa1-1.fna.fbcdn.net/v/t39.30808-6/276999420_1387218565040434_7633085090210954167_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=0debeb&_nc_ohc=lhGcAhHU6sEAX_p3uCm&_nc_ht=scontent.ftpa1-1.fna&oh=00_AT92Rd-oygqP8V2yzx6CWozBRcdRtvPP9G-bnzylWBWkpQ&oe=623C8797" height="400" width="300">
+       </div>
+
+    <div class="authInput">
             <label class="form-label">Username: </label>
             <input type="text" name="username" placeholder="username" class="form-control" required>
-            <label class="form-label">Password</label>
+            <label class="form-label">Password:</label>
             <input type="password" name="password" placeholder="enter password" class="form-control" required>
-        </fieldset>
-    </br>
-        <input type="submit" value="Log In" class="btn btn-secondary">
+        </br>
+            <input type="submit" value="Log In" class="btn btn-secondary">
+    </fieldset>
+     </div>
+    </div>
     </form>
-</div>
+  
 
 {% endblock %}
