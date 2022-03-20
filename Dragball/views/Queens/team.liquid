@@ -4,7 +4,8 @@
     </br>
     </br>
     </br>
-    <h1>Oh, so you think you can make HerStory, huh?</h1>
+    <h1 class="pageHeader">Your Top Toppers</h1>
+    
 
     {% if team.teamName == blank %}
     <form id="teamNameInput" action="/team/mine/name/?_method=PUT" method="POST">
@@ -17,10 +18,10 @@
         <input type="submit" value="BAM!" class="btn btn-outline-secondary">
     </form>
     {% else %}
-    <h1>{{ team.teamName }}</h1>
+    <h1 class="teamName">Team {{ team.teamName }}</h1>
     {% endif %}
 
-    <h2 class="display-6">
+    <h2 class="indexHeader">
         Top 5
     </h2>
 

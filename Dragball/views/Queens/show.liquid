@@ -13,15 +13,15 @@
             <div class="inner">
                 
                 <div class="nameSeason">
-                    <h2>
+                    <h2 class="queenName">
                         {{ queenData.name }}
                     </h2>
-                    <h4>Season:
+                    <h4 class="showh4">Season:
                         {{queenData.episodes[0].seasonId}}</h4>
                     </div>
 
                     <div class="win">
-                    <h6>Are they a winner, baby?</h6>
+                    <h6 class="showh6">Are they a winner, baby?</h6>
                     <p> {% if queenData.winner %}
                         YAS
                         {% else %}
@@ -29,7 +29,7 @@
                         {% endif %} </p>
                     </div>
                     <div class="congen">
-                    <h6>Miss Congeneality?</h6>
+                    <h6 class="showh6" >Miss Congeneality?</h6>
                     <p> {% if queenData.missCongeniality %}
                         Mhm, she's a queen, for the queens
                         {% else %}
@@ -49,7 +49,7 @@
                             <input type="hidden" value="{{queenData.name}}" name="name">
                             <input type="hidden" value="{{queenData.image_url}}" name="image">
                             <input type="submit" value="⭐️"
-                                class="btn btn-outline-secondary btn-sm btn-block statsfavButton">
+                                class="btn btn-secondary btn-sm btn-block statsfavButton">
                         </form>
 
                     </div>
@@ -58,14 +58,14 @@
 
                 <div class="inner">
                     <div class="lip">
-                    <h4>Lip Sync Stats</h4>
+                    <h4 class="showh4">Lip Sync Stats</h4>
                     <p>How Many: {{queenData.howMany}}</p>
                     <p>Wins: {{queenData.lipsyncWin}} </p>
                     <p>Batting average: {{ queenData.lipsyncWin | divided_by: queenData.howMany }}</p>
                 </div>
 
                 <div class="chall">
-                    <h4>Challenge Wins</h4>
+                    <h4 class="showh4">Challenge Wins</h4>
                     
                     <p>Mini's: {{ queenData.miniWins }}</p>
                      <p>Maxi's: {{ queenData.maxiWins }}</p>

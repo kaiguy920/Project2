@@ -1,25 +1,32 @@
 {% block content %}
 
 <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container-fluid navBarContainer">
         <a href="/dragball" class="navbar-brand">She's a Super Queen</a>
+
         {% if loggedIn %}
+        <!-- <div> -->
         <a href="/queen/fave/mine" class="nav-link text-light">Hieee {{ username }} </a>
         {% endif %}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-                <a href="/dragball" class="nav-link text-light">View All</a>
-                <a href="/queen/fave/mine" class="nav-link text-light">Faves</a>
-                <a href="/team/mine" class="nav-link text-light">My Team</a>
-                <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+            <a href="/dragball" class="nav-link text-light">View All</a>
+            <a href="/queen/fave/mine" class="nav-link text-light">Faves</a>
+            <a href="/team/mine" class="nav-link text-light">My Team</a>
+            <a href="/auth/logout" class="nav-link text-light">Log Out</a>
             {% else %}
+            <div>
                 <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
                 <a href="/auth/login" class="nav-link text-light">Sign In</a>
+            </div>
             {% endif %}
         </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
 </nav>
 {% endblock %}

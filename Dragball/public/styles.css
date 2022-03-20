@@ -1,7 +1,103 @@
+
+.aboutQueen {
+    width: 180px;
+    white-space: normal;
+    color: rgba(88, 88, 95, 0.6);
+    font-size: 12px;
+    
+}
+
 body {
-   /* background-image: url("https://media.istockphoto.com/vectors/american-football-touchdown-strategy-diagram-on-chalkboard-vector-id473089568?k=20&m=473089568&s=612x612&w=0&h=IRyT3yd2LBmwxalHZC7jvqKd0z31hlJti29DOMvMqqg="); */
-   background-color: aliceblue;
+   background-image: url("https://touchdowntrips.com/wp-content/uploads/sites/2/2016/05/Football-X-s-And-O-s.jpg");
+   background-attachment: scroll;
+   background-position: center;
   }
+
+.card-header {
+    color: black;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+.card-image {
+    align-content: center;
+    margin-bottom: 10px;
+}
+
+.cardButtons {
+   width: calc(100% - 20px);
+   display: flex;
+   flex-direction: column;
+}
+
+
+.favButton {
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    border-bottom: 20px;
+}
+
+.forWhat {
+    pointer-events: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30%;
+    border-radius: 15px;
+    border: 5px solid whitesmoke;
+ }
+
+h6 {
+    font-size: 20px;
+}
+
+.indexHeader {
+    font-family: 'Reenie Beanie', cursive;
+    text-align: center;
+    font-size: 80px;
+    color: whitesmoke;
+    text-decoration: underline;
+    /* -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: whitesmoke; */
+    /* padding: 20px; */
+    background-color: black;
+    width: 300px;
+}
+
+img:hover {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  
+  img {
+      margin-top: -2px;
+      opacity: .8;
+      
+  }
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-around;
+    width: 300px;
+    background-color: whitesmoke;
+    padding: 20px;
+
+}
+
+.innercenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    background-color: rgb(247, 202, 209);
+    padding: 20px;
+}
 
 .queensContainer {
     display: flex;
@@ -9,15 +105,6 @@ body {
     justify-content: space-evenly;
 }  
 
-.outterDiv {
-    display: flex;
-    justify-content: space-evenly;
-
-    margin: 30px 15px;
-    padding: 15px;
-    border: 1px solid navy;
-    color: black;
-}
 
 
 .queenContainer {
@@ -34,103 +121,27 @@ body {
     padding-bottom: 10px;
 }
 
+
 .queenName {
-    color: rgb(70, 65, 154);
+    color: black;
     margin-top: 10px;
-    font-family: 'Bad Script', cursive;
+    font-family: 'Permanent Marker', cursive;
 
 }
 
-.aboutQueen {
-    width: 180px;
-    white-space: normal;
-    color: rgb(70, 65, 154, .6);
-    font-size: 12px;
-    
+.navBarContainer {
+height: 80px;
 }
 
-.inner {
+
+.outterDiv {
     display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: space-around;
-    width: 300px;
-    background-color: lightblue;
-    padding: 20px;
-
+    justify-content: space-evenly;
+    margin: 30px 15px;
+    padding: 15px;
+    border: 2px solid whitesmoke;
+    color: black;
 }
-
-.innercenter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 300px;
-    background-color: lightblue;
-    padding: 20px;
-}
-
-
-.statImg {
-    border-radius: 50%;
-}
-
-
-h6 {
-    font-size: 20px;
-}
-
-.favButton {
-    width: 180px;
-    margin-bottom: 10px;
-}
-
-.statsfavButton {
-    width: 200px;
-    margin-top: 15px;
-}
-
-.card-header {
-    color: rgb(70, 65, 154);
-    font-family: 'Bad Script', cursive;
-    font-size: 30px;
-    text-align: center;
-}
-
-.card-image {
-    align-content: center;
-    margin-bottom: 10px;
-}
-
-.cardButtons {
-   width: calc(100% - 20px);
-   display: flex;
-   flex-direction: column;
-}
-
-.form-group {
-    border-bottom: 20px;
-}
-
-img:hover {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-  }
-  
-  img {
-      margin-top: -2px;
-      opacity: .7;
-      
-  }
-
-  .forWhat {
-    pointer-events: none;
-    margin-top: 20px;
-    margin-left: 30%;
-    border-radius: 15px;
-    border: 5px solid whitesmoke;
-    opacity: .9;
-  }
 
 .pageHeader {
     background-color: whitesmoke;
@@ -140,10 +151,34 @@ img:hover {
     font-size: 55px;
 }
 
-.indexHeader {
-    font-family: 'Niconne', cursive;
-    text-align: center;
-    font-size: 60px;
-    color: black;
-    padding: 20px;
+.showh4 {
+    font-family: 'Reenie Beanie', cursive;
+    font-weight: bold;
+    font-size: 40px;
+
 }
+
+.showh6 {
+    font-weight: bold;
+}
+
+.statImg {
+    border-radius: 50%;
+}
+
+.statsfavButton {
+    width: 200px;
+    margin-top: 15px;
+}
+ 
+.teamName {
+    font-size: 50px;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
