@@ -1,6 +1,6 @@
 body {
-    background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm301-beer-1b.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=f143277f2561fddfcea0460cc4736b00");
-    background-size:contain;
+   /* background-image: url("https://media.istockphoto.com/vectors/american-football-touchdown-strategy-diagram-on-chalkboard-vector-id473089568?k=20&m=473089568&s=612x612&w=0&h=IRyT3yd2LBmwxalHZC7jvqKd0z31hlJti29DOMvMqqg="); */
+   background-color: aliceblue;
   }
 
 .queensContainer {
@@ -8,6 +8,17 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }  
+
+.outterDiv {
+    display: flex;
+    justify-content: space-evenly;
+
+    margin: 30px 15px;
+    padding: 15px;
+    border: 1px solid navy;
+    color: black;
+}
+
 
 .queenContainer {
     width: 200px;
@@ -26,6 +37,8 @@ body {
 .queenName {
     color: rgb(70, 65, 154);
     margin-top: 10px;
+    font-family: 'Bad Script', cursive;
+
 }
 
 .aboutQueen {
@@ -33,6 +46,38 @@ body {
     white-space: normal;
     color: rgb(70, 65, 154, .6);
     font-size: 12px;
+    
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-around;
+    width: 300px;
+    background-color: lightblue;
+    padding: 20px;
+
+}
+
+.innercenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    background-color: lightblue;
+    padding: 20px;
+}
+
+
+.statImg {
+    border-radius: 50%;
+}
+
+
+h6 {
+    font-size: 20px;
 }
 
 .favButton {
@@ -40,6 +85,22 @@ body {
     margin-bottom: 10px;
 }
 
+.statsfavButton {
+    width: 200px;
+    margin-top: 15px;
+}
+
+.card-header {
+    color: rgb(70, 65, 154);
+    font-family: 'Bad Script', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+.card-image {
+    align-content: center;
+    margin-bottom: 10px;
+}
 
 .cardButtons {
    width: calc(100% - 20px);

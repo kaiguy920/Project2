@@ -1,59 +1,81 @@
 {% layout 'layout.liquid' %}
-<link rel="stylesheet" href="/public/show.css">
 {% block content %}
 
 <div class="container-md">
 
-</br>
-</br>
-</br>
+    </br>
+    </br>
+    </br>
 
     <article>
         
-        <h1>
-            {{ queenData.name }} 
-        </h1>
-        <img src="{{queenData.image_url}}" height="450" width="300" alt="">
+        <div class="outterDiv">
+            <div class="inner">
+                
+                <div class="nameSeason">
+                    <h2>
+                        {{ queenData.name }}
+                    </h2>
+                    <h4>Season:
+                        {{queenData.episodes[0].seasonId}}</h4>
+                    </div>
 
-        <h2>Category is...</h2>
-    <ul>
-        <li>Season</li>
-        <h4>{{queenData.episodes[0].seasonId}}</h4>
-        <li>Are they a winner, baby?</li>
-          <h4>  {% if queenData.winner %}
-           YAS
-           {% else %}
-          Henny, no
-           {% endif %} </h4>
+                    <div class="win">
+                    <h6>Are they a winner, baby?</h6>
+                    <p> {% if queenData.winner %}
+                        YAS
+                        {% else %}
+                        Henny, no
+                        {% endif %} </p>
+                    </div>
+                    <div class="congen">
+                    <h6>Miss Congeneality?</h6>
+                    <p> {% if queenData.missCongeniality %}
+                        Mhm, she's a queen, for the queens
+                        {% else %}
+                        No, she's throws the shade
+                        {% endif %} </p>
+                        </div>
+                </div>
 
-           <li>Miss Congeneality?</li>
-          <h4>  {% if queenData.missCongeniality %}
-           Mhm, she's a queen, for the queens
-           {% else %}
-          No, she's throws the shade
-           {% endif %} </h4>
-           <li>Lip Sync Stats</li>
-           <h4>Batting average: {{ queenData.lipsyncWin | divided_by: queenData.howMany }}</h4>
-           <h5>How Many: {{queenData.howMany}}</h5>
-           <h5>Wins: {{queenData.lipsyncWin}} </h5>
-        </ul>
-        
-        <li>Challenge Wins</li>
-       
-        <h5>Mini's: {{ queenData.miniWins }}</h5>
-        <h5>Maxi's: {{ queenData.maxiWins }}</h5>
+                <div class="innercenter">
 
-        
-        <div class="btn-group">
-            <form action="/queen/fave" method="POST">
-           <!-- 3 inputs for id, name & image with type hidden to push info into the object model -->
-           <input type="hidden" value="{{queenData.id}}" name="queenId">
-           <input type="hidden" value="{{queenData.name}}" name="name">
-           <input type="hidden" value="{{queenData.image_url}}" name="image">
-            <input type="submit" value="⭐️" class="btn btn-outline-secondary btn-sm btn-block favButton">
-            </form>
-        </div>
-        
+                    <img class="statImg" src="{{queenData.image_url}}" height="200" width="200" alt="">
+
+                    <div class="btn-group">
+                        <form action="/queen/fave" method="POST">
+                            <!-- 3 inputs for id, name & image with type hidden to push info into the object model -->
+                            <input type="hidden" value="{{queenData.id}}" name="queenId">
+                            <input type="hidden" value="{{queenData.name}}" name="name">
+                            <input type="hidden" value="{{queenData.image_url}}" name="image">
+                            <input type="submit" value="⭐️"
+                                class="btn btn-outline-secondary btn-sm btn-block statsfavButton">
+                        </form>
+
+                    </div>
+                </div>
+
+
+                <div class="inner">
+                    <div class="lip">
+                    <h4>Lip Sync Stats</h4>
+                    <p>How Many: {{queenData.howMany}}</p>
+                    <p>Wins: {{queenData.lipsyncWin}} </p>
+                    <p>Batting average: {{ queenData.lipsyncWin | divided_by: queenData.howMany }}</p>
+                </div>
+
+                <div class="chall">
+                    <h4>Challenge Wins</h4>
+                    
+                    <p>Mini's: {{ queenData.miniWins }}</p>
+                     <p>Maxi's: {{ queenData.maxiWins }}</p>
+                
+
+                </div>
+            </div>
+
+
+
     </article>
 </div>
 {% endblock %}

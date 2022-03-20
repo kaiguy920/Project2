@@ -9,10 +9,10 @@
     <h2 class="display-6">My Faves</h2>
     <div class="row">
         {% for queen in queen %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 15rem;">
             <h5 class="card-header">{{queen.name}}</h5>
             <div class="card-body">
-                <img src="{{queen.image}}" height="200" width="150">
+                <img class="card-image" src="{{queen.image}}" height="200" width="150">
                 
                 <div class="cardButtons">
                     {% if example.owner == userId %}

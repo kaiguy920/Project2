@@ -1,12 +1,12 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-md">
-</br>
-</br>
-</br>
+    </br>
+    </br>
+    </br>
     <h1>Oh, so you think you can make HerStory, huh?</h1>
-    
-{% if team.teamName == blank %}
+
+    {% if team.teamName == blank %}
     <form id="teamNameInput" action="/team/mine/name/?_method=PUT" method="POST">
         <fieldset>
 
@@ -16,28 +16,28 @@
         </fieldset>
         <input type="submit" value="BAM!" class="btn btn-outline-secondary">
     </form>
-{% else %}
+    {% else %}
     <h1>{{ team.teamName }}</h1>
-   {% endif %}
+    {% endif %}
 
     <h2 class="display-6">
-      Top 5
+        Top 5
     </h2>
 
     <div class="row">
         {% for queen in team.teamMembers %}
-    
-        <div class="card" style="width: 18rem;">
+
+        <div class="card" style="width: 15rem;">
             <h5 class="card-header">{{ queen.name }}</h5>
             <div class="card-body">
-                <img src="{{queen.image}}" height="200" width="150">
-               
+                <img class="card-image" src="{{queen.image}}" height="200" width="150">
+                
                 {% if example.owner == userId %}
                 <div class="cardButtons">
-                <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
-                    <input type="hidden" value="{{ team._id }}" name="teamId">
-                    <input type="hidden" value="{{ queen._id }}" name="queenId">
-                    <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block">
+                    <form action="/team/mine/{{ queen._id }}?_method=DELETE" method="POST">
+                        <input type="hidden" value="{{ team._id }}" name="teamId">
+                        <input type="hidden" value="{{ queen._id }}" name="queenId">
+                        <input type="submit" value="Sashay Away" class="btn btn-outline-danger btn-sm btn-block">
                 </div>
                 </form>
                 <!-- <div class="form-group">
