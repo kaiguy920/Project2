@@ -36,6 +36,12 @@ body {
    background-position: center;
   }
 
+  @media screen and (min-width: 600px) {
+    .body {
+        width: 2em;
+    }
+}
+
   .card {
       margin-right: 20px;
       margin-top: 20px;
@@ -201,6 +207,7 @@ img:hover {
 height: 60px;
 }
 
+
 .navInnerContainer {
     display: flex;
     font-family: 'Reenie Beanie', cursive;
@@ -252,7 +259,6 @@ height: 60px;
     margin-top: 15px;
 }
  
-
 
 
 

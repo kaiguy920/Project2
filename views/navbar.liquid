@@ -1,9 +1,14 @@
 {% block content %}
 
-<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid navBarContainer">
         <a href="/dragball" class="navbar-brand">✨ Butch Queen Realness ✨ </a>
 
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
 
         {% if loggedIn %}
         <div class="navInnerContainer">
@@ -25,6 +30,7 @@
             <a href="/auth/login" class="nav-link text-light">Sign In</a>
         </div>
         {% endif %}
+        </div>
     </div>
 </nav>
 {% endblock %}

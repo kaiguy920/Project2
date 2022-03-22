@@ -24,7 +24,9 @@ This is the content for project 2 (full stack-Node app)
 
 **INSTALLATION INSTRUCTIONS**
 - no api key is needed on this resource (https://drag-race-api.readme.io/docs)
-- env file
+- fork and clone this repo
+- ensure you have a .gitignore file with node_modules & .env
+- also be sure to have a .env file listing the database_url and port used
 
 **STETCH GOALS**
 - add local queens
@@ -32,7 +34,7 @@ This is the content for project 2 (full stack-Node app)
 - query of most added queen to showcase
 
 **UNSOLVED PROBLEMS**
-- queen info is from 4 years ago, so there is a lot of missing seasons
+- queen info is from 4 years ago, so there is some missing seasons
 
 **WIRE FRAME**
 - ![ERD](images/ERD.png)
