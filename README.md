@@ -25,8 +25,12 @@ This is the content for project 2 (full stack-Node app)
 **INSTALLATION INSTRUCTIONS**
 - no api key is needed on this resource (https://drag-race-api.readme.io/docs)
 - fork and clone this repo
-- ensure you have a .gitignore file with node_modules & .env
-- also be sure to have a .env file listing the database_url and port used
+- ensure you have a `.gitignore` file with `node_modules` & `.env` listed inside
+- also be sure to have a `.env` file listing variables `PORT` & `DATABASE_URL` & `SECRET`
+- this app uses mongoDb and Session authentication, so your `DATABASE_URL` will need to be your local mongo
+- install dependencies with npm install
+- ensure that you have nodemon installed by running `npm install -g nodemon`
+- ensure API is functioning by running `npm start`
 
 **STETCH GOALS**
 - add local queens
