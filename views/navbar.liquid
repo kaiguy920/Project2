@@ -1,16 +1,47 @@
 {% block content %}
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid navBarContainer">
-        <a href="/dragball" class="navbar-brand">✨ Butch Queen Realness ✨ </a>
-
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a href="/dragball" class="navbar-brand">✨ Butch Queen Realness ✨ </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
         {% if loggedIn %}
+
+        <li class="nav-item">
+            <a href="/queen/fave/mine" class="nav-link text-light">Hieee {{ username }}</a>
+            </li>
+
+        <li class="nav-item">      
+            <a href="/dragball" class="nav-link text-light">View All</a>
+        </li>
+        
+        <li class="nav-item">
+        <a href="/queen/fave/mine" class="nav-link text-light">Faves</a>
+        </li>
+        <li class="nav-item">
+        <a href="/team/mine" class="nav-link text-light">My Team</a>
+        </li>
+
+        <li class="nav-item">
+        <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+        <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
+        </li>
+        <li class="nav-item">
+        <a href="/auth/login" class="nav-link text-light">Sign In</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  
+
+
+        <!-- {% if loggedIn %}
         <div class="navInnerContainer">
             <li class="nav-item">      
                 <a href="/dragball" class="nav-link text-light">View All  |  </a>
@@ -44,8 +75,35 @@
             <a href="/auth/login" class="nav-link text-light">Sign In</a>
             </li>
         </div>
-        {% endif %}
-        </div>
+        {% endif %} -->
       
 </nav>
 {% endblock %}
+
+
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid navBarContainer">
+        <a href="/dragball" class="navbar-brand">✨ Butch Queen Realness ✨ </a>
+
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+        </ul>
+    </div>
+</div> -->

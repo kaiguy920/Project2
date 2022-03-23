@@ -207,15 +207,9 @@ img:hover {
 height: 60px;
 }
 
-
-.navInnerContainer {
-    display: flex;
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 30px;
-    margin-right: 50px;
-    margin-bottom: 40px;
+.nav-item {
+    margin-right: 40px;
 }
-
 
 .outterDiv {
     display: flex;
