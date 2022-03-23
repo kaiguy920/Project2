@@ -12,25 +12,40 @@
 
         {% if loggedIn %}
         <div class="navInnerContainer">
-            <a href="/dragball" class="nav-link text-light">View All  |  </a>
+            <li class="nav-item">      
+                <a href="/dragball" class="nav-link text-light">View All  |  </a>
+            </li>
+            
+            <li class="nav-item">
             <a href="/queen/fave/mine" class="nav-link text-light">Faves  |  </a>
+            </li>
+            <li class="nav-item">
             <a href="/team/mine" class="nav-link text-light">My Team</a>
+            </li>
         </div>
         {% endif %}
 
 
         {% if loggedIn %}
         <div class="navInnerContainer">
+            <li class="nav-item">
             <a href="/queen/fave/mine" class="nav-link text-light">Hieee {{ username }}  | </a>
+            </li>
+            <li class="nav-item">
             <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+            </li>
         </div>
         {% else %}
         <div class="navInnerContainer">
+            <li class="nav-item">
             <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
+            </li>
+            <li class="nav-item">
             <a href="/auth/login" class="nav-link text-light">Sign In</a>
+            </li>
         </div>
         {% endif %}
         </div>
-    </div>
+      
 </nav>
 {% endblock %}
