@@ -41,5 +41,5 @@ This is the content for project 2 (full stack-Node app)
 - queen info is from 4 years ago, so there is some missing seasons
 
 **WIRE FRAME**
-- ![ERD](images/ERD.png)
-- ![page](images/index_page.png)
+- ![ERD](/public/images/ERD.png)
+- ![page](public/images/index_page.png)
